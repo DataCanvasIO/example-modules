@@ -1,0 +1,7 @@
+modules/utility/compare
+modules/modeling/basic/linear_lr
+modules/modeling/basic/linear_svc
+modules/modeling/basic/linear_svc_predictor
+modules/modeling/basic/linear_lr_predictor
+modules/data_source/random
+modules/data_source/csv_downloader

@@ -19,7 +19,10 @@ else
 fi
 
 # modules=( "hello" "world" )
-modules=$(find modules/ -name Dockerfile -exec dirname {} \;)
+# modules=$(find modules/ -name Dockerfile -exec dirname {} \;)
+
+THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
+modules=$(cat $THIS_DIR/modules)
 
 for i in ${modules[@]}; do
     echo "Submitting module at : $i"
@@ -30,8 +33,8 @@ for i in ${modules[@]}; do
     module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname"
     module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
     echo "submit $module_dirname version=$module_version ==> $module_tag_with_version"
-    cd ./build && screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
-    cd ../
+    # cd ./build && screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
+    # cd ../
 done
 
 rm -rf ./build/
