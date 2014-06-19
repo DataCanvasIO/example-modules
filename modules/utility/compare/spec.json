@@ -1,0 +1,21 @@
+{
+    "Name": "compare",
+    "Description": "comparing the similarity of the two documents",
+    "Version": "0.1",
+    "CategoryTags": ["basic", "utility"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {},
+    "Input": {
+        "File1": [
+            "csv"
+        ],
+        "File2": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "Result": [
+            "csv"
+        ]
+    }
+}

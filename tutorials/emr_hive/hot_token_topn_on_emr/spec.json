@@ -1,0 +1,51 @@
+{
+    "Name": "hot_token_topN_on_emr",
+    "Description": "Get hotest token in search engine query log.",
+    "Version": "0.1",
+    "CategoryTags": ["EMR", "Hive"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "AWS_ACCESS_KEY_ID": {
+            "Default": "",
+            "Type": "string"
+        },
+        "AWS_ACCESS_KEY_SECRET": {
+            "Default": "",
+            "Type": "string"
+        },
+        "S3_BUCKET": {
+            "Default": "",
+            "Type": "string"
+        },
+        "AWS_Region": {
+            "Default": "",
+            "Type": "string"
+        },
+        "EMR_jobFlowId": {
+            "Default": "",
+            "Type": "string"
+        },
+        "topN": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "query_log_s3_dir": [
+            "hive.s3.id_query_querytime"
+        ]
+    },
+    "Output": {
+        "hot_token_topN_s3_dir": [
+            "hive.s3.table.token_count"
+        ]
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "Name": "SVM",
+    "Description": "A simple SVM",
+    "Version": "0.1",
+    "CategoryTags": ["SVM", "LinearSVC", "sci-python", "Tutorial"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "C": {
+            "Default": "",
+            "Type": "float"
+        }
+    },
+    "Input": {
+        "X": [
+            "csv"
+        ],
+        "Y": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "MODEL": [
+            "model.dummy"
+        ]
+    }
+}

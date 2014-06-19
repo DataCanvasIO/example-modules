@@ -1,0 +1,21 @@
+{
+    "Name": "LogisticRegression_Predictor",
+    "Description": "A basic Logistic Regression Classifier Predictor",
+    "Version": "0.1",
+    "CategoryTags": ["basic", "linear", "logistic", "regression", "predictor", "sci-python"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {},
+    "Input": {
+        "MODEL": [
+            "lr.joblib"
+        ],
+        "X": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "Y": [
+            "csv"
+        ]
+    }
+}

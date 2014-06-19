@@ -1,0 +1,19 @@
+{
+    "Name": "CSV_Downloader",
+    "Description": "A csv downloader",
+    "Version": "0.1",
+    "CategoryTags": ["basic", "utility"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "URI": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {},
+    "Output": {
+        "O": [
+            "csv"
+        ]
+    }
+}

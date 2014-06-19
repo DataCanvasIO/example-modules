@@ -1,0 +1,161 @@
+#+TITLE: Hadoop Hive UDF Tutorial
+#+AUTHOR: Jiaqi Guo
+#+EMAIL: guojq@zetyun.com
+
+* Create a maven project
+
+#+BEGIN_SRC sh
+  mvn archetype:generate \
+      -DarchetypeGroupId=org.apache.maven.archetypes \
+      -DgroupId=com.mycompany.udf \
+      -DartifactId=my-hive-udf
+#+END_SRC
+
+* Edit your pom.xml
+
+#+BEGIN_SRC xml
+  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.mycompany.udf</groupId>
+    <artifactId>my-hive-udf</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>my-hive-udf</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+      <defaultGoal>install</defaultGoal>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <configuration>
+            <source>1.6</source>
+            <target>1.6</target>
+          </configuration>
+        </plugin>
+      </plugins>
+    </build>
+
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.hive</groupId>
+        <artifactId>hive-exec</artifactId>
+        <version>0.11.0</version>
+        <scope>compile</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>3.8.1</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.16</version>
+      </dependency>
+    </dependencies>
+    
+    <repositories>
+      <repository>
+        <id>cloudera</id>
+        <url>https://repository.cloudera.com/artifactory/cloudera-repos/</url>
+      </repository>
+    </repositories>
+  </project>
+
+#+END_SRC
+
+* Write your code
+
+#+BEGIN_SRC java
+  import java.util.ArrayList;
+
+  import org.apache.hadoop.hive.ql.exec.UDFArgumentException;
+  import org.apache.hadoop.hive.ql.exec.UDFArgumentLengthException;
+  import org.apache.hadoop.hive.ql.metadata.HiveException;
+  import org.apache.hadoop.hive.ql.udf.generic.GenericUDTF;
+  import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspector;
+  import org.apache.hadoop.hive.serde2.objectinspector.ObjectInspectorFactory;
+  import org.apache.hadoop.hive.serde2.objectinspector.StructObjectInspector;
+  import org.apache.hadoop.hive.serde2.objectinspector.primitive.PrimitiveObjectInspectorFactory;
+
+  public class SplitWord extends GenericUDTF{
+
+      @Override
+      public void close() throws HiveException {
+          // TODO Auto-generated method stub
+      }
+
+      @Override
+      public StructObjectInspector initialize(ObjectInspector[] args)
+          throws UDFArgumentException {
+          // Check input here.Query is expected.
+          if(args.length!=1){
+              throw new UDFArgumentLengthException("SplitWord UDTF takes only one argument");
+          }
+
+          //Check the Category.
+          if(args[0].getCategory()!=ObjectInspector.Category.PRIMITIVE){
+              throw new UDFArgumentException("SplitWord UDTF takes string as a parameter");
+          }
+
+          ArrayList<String> fileNames = new ArrayList<String>();
+          ArrayList<ObjectInspector> fieldOIs = new ArrayList<ObjectInspector>();
+          fileNames.add("token");
+          fieldOIs.add(PrimitiveObjectInspectorFactory.javaStringObjectInspector);
+
+          return ObjectInspectorFactory.getStandardStructObjectInspector(fileNames, fieldOIs);
+      }
+
+      @Override
+      public void process(Object[] arg) throws HiveException {
+          // Split Word and filter out 'com', 'www'
+          if(arg[0].toString()==null||arg[0].toString().trim().equals("")) return;
+          String query = arg[0].toString();
+          String[] tokens = query.split(" ");
+          for (String t : tokens) {
+              forward(new Object[]{t});
+          }
+      }
+  }
+#+END_SRC
+
+Then get your driectory like this
+
+#+BEGIN_SRC
+.
+|-- pom.xml
+`-- src
+    |-- main
+    |   `-- java
+    |       `-- com
+    |           `-- mycompany
+    |               `-- udf
+    |                   `-- SplitWord.java
+    `-- test
+        `-- java
+            `-- com
+                `-- mycompany
+                    `-- udf
+                        `-- TestSplitWord.java
+
+11 directories, 3 files
+#+END_SRC
+
+* Package your jar
+
+If Step 5 works ok, package it.
+
+#+BEGIN_SRC sh
+mvn package
+#+END_SRC
+

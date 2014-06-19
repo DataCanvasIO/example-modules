@@ -1,0 +1,42 @@
+{
+    "Name": "LinearSVC",
+    "Description": "A basic Linear Support Vector Classifier",
+    "Version": "0.1",
+    "CategoryTags": ["basic", "linear", "SVC", "sci-python"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "C": {
+            "Default": 0.1,
+            "Type": "float"
+        },
+        "loss": {
+            "Default": "l2",
+            "Enums": [
+                "l1",
+                "l2"
+            ],
+            "Type": "enum"
+        },
+        "penalty": {
+            "Default": "l2",
+            "Enums": [
+                "l1",
+                "l2"
+            ],
+            "Type": "enum"
+        }
+    },
+    "Input": {
+        "X": [
+            "csv"
+        ],
+        "Y": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "MODEL": [
+            "svm.joblib"
+        ]
+    }
+}

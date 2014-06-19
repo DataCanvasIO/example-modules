@@ -1,0 +1,21 @@
+{
+    "Name": "LinearSVC_Predictor",
+    "Description": "A basic Linear Support Vector Classifier",
+    "Version": "0.1",
+    "CategoryTags": ["basic", "linear", "SVC", "predictor", "sci-python"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {},
+    "Input": {
+        "MODEL": [
+            "svm.joblib"
+        ],
+        "X": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "Y": [
+            "csv"
+        ]
+    }
+}

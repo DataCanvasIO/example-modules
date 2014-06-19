@@ -1,0 +1,34 @@
+{
+    "Name": "LogisticRegression",
+    "Description": "A basic Linear Logistic Regression Classifier",
+    "Version": "0.1",
+    "CategoryTags": ["basic", "linear", "logistic", "regression", "sci-python"],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "C": {
+            "Default": 0.1,
+            "Type": "float"
+        },
+        "penalty": {
+            "Default": "l2",
+            "Enums": [
+                "l1",
+                "l2"
+            ],
+            "Type": "enum"
+        }
+    },
+    "Input": {
+        "X": [
+            "csv"
+        ],
+        "Y": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "MODEL": [
+            "lr.joblib"
+        ]
+    }
+}
