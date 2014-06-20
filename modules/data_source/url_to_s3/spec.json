@@ -1,0 +1,31 @@
+{
+    "Name": "url_to_s3",
+    "Description": "Download from a URL and upload to s3.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "AWS_ACCESS_KEY_ID": {
+            "Default": "",
+            "Type": "string"
+        },
+        "AWS_ACCESS_KEY_SECRET": {
+            "Default": "",
+            "Type": "string"
+        },
+        "S3_BUCKET": {
+            "Default": "",
+            "Type": "string"
+        },
+        "SOURCE_URL": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {},
+    "Output": {
+        "dest_s3": [
+            "s3"
+        ]
+    }
+}
