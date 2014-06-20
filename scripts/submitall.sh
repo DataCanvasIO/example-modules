@@ -33,8 +33,8 @@ for i in ${modules[@]}; do
     module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname"
     module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
     echo "submit $module_dirname version=$module_version ==> $module_tag_with_version"
-    # cd ./build && screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
-    # cd ../
+    cd ./build && screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
+    cd ../
 done
 
 rm -rf ./build/
