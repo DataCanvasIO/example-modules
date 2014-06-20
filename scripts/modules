@@ -7,3 +7,4 @@ modules/data_source/random
 modules/data_source/csv_downloader
 modules/data_source/url_to_s3
 modules/modeling/EMR/hot_token_topn
+modules/modeling/EMR/hot_site_topn
