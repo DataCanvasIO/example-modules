@@ -5,3 +5,5 @@ modules/modeling/basic/linear_svc_predictor
 modules/modeling/basic/linear_lr_predictor
 modules/data_source/random
 modules/data_source/csv_downloader
+modules/data_source/url_to_s3
+modules/modeling/EMR/hot_token_topn
