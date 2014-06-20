@@ -55,11 +55,12 @@ def main():
     s3_conn = boto.connect_s3(p.AWS_ACCESS_KEY_ID, p.AWS_ACCESS_KEY_SECRET)
     s3_bucket = s3_conn.get_bucket(p.S3_BUCKET)
 
-    remote_filename = get_s3_working_dir(settings, s3_bucket, "OUTPUT_dest_s3")
+    remote_filename = get_s3_working_dir(settings, s3_bucket, "OUTPUT_dest_s3/dest_s3")
 
-    remote_path = s3_multipart_upload(s3_bucket, p.SOURCE_URL, remote_filename)
+    remote_filename_full = s3_multipart_upload(s3_bucket, p.SOURCE_URL, remote_filename)
+    remote_dir = os.path.dirname(remote_filename_full)
     with open(settings.Output.dest_s3, "w") as f:
-        f.write(remote_path)
+        f.write(remote_dir)
 
     print("Done")
 
