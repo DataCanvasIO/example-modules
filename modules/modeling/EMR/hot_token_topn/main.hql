@@ -1,7 +1,7 @@
 
 set hive.base.inputformat=org.apache.hadoop.hive.ql.io.HiveInputFormat;
 
-CREATE TEMPORARY FUNCTION splitword AS 'com.zetdata.hive.udtf.SplitWord';
+CREATE TEMPORARY FUNCTION splitword AS 'com.zetdata.udf.SplitWord';
 
 --CREATE OUTPUT TABLE
 
