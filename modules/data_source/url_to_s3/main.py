@@ -35,6 +35,7 @@ def s3_multipart_upload(bucket, url, remote_filename):
             num_part += 1
             io.close()
     except IOError as e:
+        mp.cancel_upload()
         raise e
     mp.complete_upload()
     print("")
