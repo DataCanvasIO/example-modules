@@ -1,0 +1,14 @@
+{
+    "Name" : "datasource_downloader",
+    "Description" : "A Data Source Downloader.",
+    "Version" : "0.1",
+    "CategoryTags": ["data_source", "utility"],
+    "Cmd" : "/usr/bin/python main.py",
+    "Param" : { },
+    "Input" : {
+        "DS": [ "datasource" ]
+    },
+    "Output" : {
+        "O" : [ "any" ]
+    }
+}
