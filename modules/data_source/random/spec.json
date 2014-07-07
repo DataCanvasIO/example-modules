@@ -2,7 +2,7 @@
     "Name": "random",
     "Description": "randomly generate a matrix of X*Y",
     "Version": "0.1",
-    "CategoryTags": ["basic", "utility", "random", "sci-python"],
+    "CategoryTags": ["data_source", "basic", "utility", "random", "sci-python"],
     "Cmd": "/usr/bin/python main.py",
     "Param": {
         "X": {

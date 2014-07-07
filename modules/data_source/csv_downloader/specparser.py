@@ -212,7 +212,10 @@ def get_settings(spec_json):
 
     # TODO:
     global_param = global_param_builder(param_json['GLOBAL_PARAM'])
-    settings = ModuleSetting(Name=spec_json['Name'], Description=spec_json['Description'], Param=param, Input=json_input, Output=json_output, Cmd=spec_json['Cmd'], GlobalParam=global_param)
+    settings = ModuleSetting(Name=spec_json['Name'],
+                             Description=spec_json['Description'],
+                             Param=param, Input=json_input, Output=json_output,
+                             Cmd=spec_json['Cmd'], GlobalParam=global_param)
     return settings
 
 def get_json_file(filename):
