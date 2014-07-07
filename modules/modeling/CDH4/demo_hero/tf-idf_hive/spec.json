@@ -1,0 +1,42 @@
+{
+    "Name" : "demo_tf-idf_hive",
+    "Description" : "merge tf and idf together",
+    "Version" : "0.1",
+    "CategoryTags": [],
+    "Cmd" : "/usr/bin/python main.py",
+    "Param" : {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        }
+    },
+    "Input" : {
+        "input_table1": [
+            "hive.table.tf_table"
+        ],
+        "input_table2": [
+            "hive.table.idf_table"
+        ]
+    },
+    "Output" : {
+        "output_table": [
+            "hive.table.tf_idf_table"
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "Name": "demo_sqoop2_user",
+    "Description": "sqoop2 client to post requset of transfering user data",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "Sqoop2Server_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "Sqoop2Server_Port": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {},
+    "Output": {
+        "user_dir": [
+            "hdfs.user"
+        ]
+    }
+}

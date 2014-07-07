@@ -1,0 +1,42 @@
+{
+    "Name" : "demo_word_segment_in_hive",
+    "Description" : "word segemtn in hive",
+    "Version" : "0.1",
+    "CategoryTags": [],
+    "Cmd" : "/usr/bin/python main.py",
+    "Param" : {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        }
+    },
+    "Input" : {
+        "input_table": [
+            "hive.table"
+        ]
+    },
+    "Output" : {
+        "output_table1": [
+            "hive.table.messageh"
+        ],
+        "output_table2": [
+            "hive.table.messageh"
+        ]
+    }
+}
