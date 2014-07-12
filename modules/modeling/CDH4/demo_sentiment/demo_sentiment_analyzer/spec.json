@@ -1,0 +1,31 @@
+{
+    "Name": "demo_sentiment_analyzer",
+    "Description": "Demo module for sentimental analysis",
+    "Version": "0.1",
+    "CategoryTags": ["demo_sentiment", "CDH4"],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "yarn_resourcemanager": {
+            "Default": "127.0.0.1:8032",
+            "Type": "string"
+        },
+        "yarn_resourcemanager_scheduler": {
+            "Default": "127.0.0.1:8030",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "DS": [
+            "datasource"
+        ]
+    },
+    "Output": {
+        "sentiment_result": [
+            "hdfs.avro"
+        ]
+    }
+}
