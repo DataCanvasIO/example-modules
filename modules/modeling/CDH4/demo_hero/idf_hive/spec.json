@@ -2,7 +2,7 @@
     "Name": "demo_idf_hive",
     "Description": "IDF in hive",
     "Version": "0.1",
-    "CategoryTags": [],
+    "CategoryTags": ["demo_hero", "CDH4"],
     "Cmd": "/usr/bin/python main.py",
     "Param": {
         "hdfs_root": {
