@@ -18,3 +18,4 @@ modules/modeling/CDH4/demo_hero/tf-idf_hive
 modules/modeling/CDH4/demo_hero/tfidf-cosine
 modules/modeling/CDH4/demo_hero/word_segment_in_hive
 modules/modeling/CDH4/demo_hero/tf_hive
+modules/data_source/datasource_to_s3
