@@ -10,13 +10,33 @@ if [ "$#" -ne 3 ]; then
     exit
 fi
 
-screwjack --username=$USERNAME --spec_server=$SPEC_SERVER login --password=$PASSWORD
-if [ $? -eq 0 ]; then
-    echo "Login successfully"
-else
-    echo "Login failed"
-    exit 2
-fi
+login_spec_server() {
+    screwjack --username=$USERNAME --spec_server=$SPEC_SERVER login --password=$PASSWORD
+    if [ $? -eq 0 ]; then
+        echo "Login successfully"
+    else
+        echo "Login failed"
+        exit 2
+    fi
+}
+
+prebuild() {
+    [[ -x ./prebuild.sh ]] && ./prebuild.sh
+}
+
+submit_module() {
+    local dir=$1
+
+    [[ -d "$1" ]] && \
+        cd "$1" && \
+        prebuild && \
+        screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
+}
+
+#######
+# Main
+#######
+login_spec_server
 
 # modules=( "hello" "world" )
 # modules=$(find modules/ -name Dockerfile -exec dirname {} \;)
@@ -33,7 +53,7 @@ for i in ${modules[@]}; do
     module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname"
     module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
     echo "submit $module_dirname version=$module_version ==> $module_tag_with_version"
-    cd ./build && screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
+    submit_module ./build
     cd ../
 done
 
