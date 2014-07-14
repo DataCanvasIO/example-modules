@@ -22,6 +22,7 @@ login_spec_server() {
 
 prebuild() {
     [[ -x ./prebuild.sh ]] && ./prebuild.sh
+    true
 }
 
 submit_module() {
