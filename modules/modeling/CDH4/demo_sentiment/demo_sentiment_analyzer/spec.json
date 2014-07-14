@@ -20,7 +20,7 @@
     },
     "Input": {
         "DS": [
-            "datasource"
+            "datasource.s3"
         ]
     },
     "Output": {

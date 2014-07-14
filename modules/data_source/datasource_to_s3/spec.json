@@ -1,0 +1,30 @@
+{
+    "Name" : "datasource_to_s3",
+    "Description" : "A datasource to s3 uploader",
+    "Version" : "0.1",
+    "CategoryTags": [],
+    "Cmd" : "python main.py",
+    "Param": {
+        "AWS_ACCESS_KEY_ID": {
+            "Default": "",
+            "Type": "string"
+        },
+        "AWS_ACCESS_KEY_SECRET": {
+            "Default": "",
+            "Type": "string"
+        },
+        "S3_BUCKET": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "DS": [ "datasource" ]
+    },
+    "Output": {
+        "dest_s3": [
+            "datasource.s3"
+        ]
+    }
+
+}
