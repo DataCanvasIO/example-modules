@@ -32,7 +32,7 @@
 """
 A minimum spec.json parser.
 """
-__version__ = "0.2.7"
+__version__ = "0.2.8"
 __author__ = "xiaolin"
 
 import json
@@ -264,7 +264,7 @@ class HadoopRuntime(ZetRuntime):
             return
 
         if not os.path.isdir(local_dir):
-            raise Exception("Failed to find local directory %s" % local_dir)
+            return
 
         hdfs_upload_dir = self.get_hdfs_working_dir(local_dir)
         ext_files = [f for f in sorted(os.listdir(local_dir)) if os.path.isfile(os.path.join(local_dir,f))]
@@ -273,7 +273,7 @@ class HadoopRuntime(ZetRuntime):
             # f_remote_dir = os.path.dirname(f_remote)
             f_local = os.path.join(local_dir, f)
             f_remote_dir = self.get_hdfs_working_dir(f_local)
-            if cmd("hadoop fs -mkdir -p %s" % os.path.dirname(f_remote_dir)) != 0:
+            if cmd("hadoop fs -mkdir -p %s" % f_remote_dir) != 0:
                 raise Exception("Failed to create dir %s" % f_remote_dir)
             print("HDFS Upload :: %s ====> %s" % (f, f_remote_dir))
             print("hadoop fs -copyFromLocal %s %s" % (os.path.join(local_dir, f), os.path.join(f_remote_dir)))
@@ -325,7 +325,7 @@ class EmrRuntime(HadoopRuntime):
             return
 
         if not os.path.isdir(local_dir):
-            raise Exception("Failed to find local directory %s" % local_dir)
+            return
 
         s3_upload_dir = self.get_s3_working_dir(local_dir)
         ext_files = [f for f in sorted(os.listdir(local_dir)) if os.path.isfile(os.path.join(local_dir,f))]

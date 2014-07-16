@@ -2,7 +2,10 @@
     "Name" : "datasource_to_s3",
     "Description" : "A datasource to s3 uploader",
     "Version" : "0.1",
-    "CategoryTags": [],
+    "CategoryTags": [
+        "utility",
+        "data_source"
+    ],
     "Cmd" : "python main.py",
     "Param": {
         "AWS_ACCESS_KEY_ID": {

@@ -31,6 +31,8 @@ def main():
     sqoop.run_job(r['id'])
     sqoop.wait_job(r['id'])
 
+    settings.Output.message_dir.val = output_dir
+
     print("Done")
 
 if __name__ == "__main__":

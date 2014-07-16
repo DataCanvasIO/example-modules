@@ -1,10 +1,13 @@
 {
-    "Name" : "demo_tf-idf_hive",
-    "Description" : "merge tf and idf together",
-    "Version" : "0.1",
-    "CategoryTags": ["demo_hero", "CDH4"],
-    "Cmd" : "/usr/bin/python main.py",
-    "Param" : {
+    "Name": "demo_tf-idf_hive",
+    "Description": "merge tf and idf together",
+    "Version": "0.1",
+    "CategoryTags": [
+        "demo_hero",
+        "CDH4"
+    ],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
         "hdfs_root": {
             "Default": "",
             "Type": "string"
@@ -26,7 +29,7 @@
             "Type": "string"
         }
     },
-    "Input" : {
+    "Input": {
         "input_table1": [
             "hive.table.tf_table"
         ],
@@ -34,7 +37,7 @@
             "hive.table.idf_table"
         ]
     },
-    "Output" : {
+    "Output": {
         "output_table": [
             "hive.table.tf_idf_table"
         ]

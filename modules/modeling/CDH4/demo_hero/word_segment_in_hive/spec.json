@@ -1,10 +1,13 @@
 {
-    "Name" : "demo_word_segment_in_hive",
-    "Description" : "word segemtn in hive",
-    "Version" : "0.1",
-    "CategoryTags": ["demo_hero", "CDH4"],
-    "Cmd" : "/usr/bin/python main.py",
-    "Param" : {
+    "Name": "demo_word_segment_in_hive",
+    "Description": "word segemtn in hive",
+    "Version": "0.1",
+    "CategoryTags": [
+        "demo_hero",
+        "CDH4"
+    ],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
         "hdfs_root": {
             "Default": "",
             "Type": "string"
@@ -26,12 +29,12 @@
             "Type": "string"
         }
     },
-    "Input" : {
+    "Input": {
         "input_table": [
             "hive.table"
         ]
     },
-    "Output" : {
+    "Output": {
         "output_table1": [
             "hive.table.messageh"
         ],

@@ -183,11 +183,12 @@ class MySqoop(object):
             if r.status_code != 200:
                 raise Exception("Failed to run a job: '%s'" % str(jid))
 
-            pp(r.json())
-            if r.json()['all'][0]['status'] in ['FAILURE_ON_SUBMIT']:
+            ret = r.json()
+            print("Job status '%s'" % ret['all'][0]['status'])
+            if ret['all'][0]['status'] in ['FAILURE_ON_SUBMIT']:
                 raise Exception("Failed to run a job: '%s'" % str(jid))
-                
-            if r.json()['all'][0]['status'] in ['SUCCEEDED', 'UNKNOWN']:
+
+            if ret['all'][0]['status'] in ['SUCCEEDED', 'UNKNOWN']:
                 return r
 
 def pp(j):

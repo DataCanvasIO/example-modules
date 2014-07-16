@@ -1,8 +1,8 @@
-echo "messageh" > input.tbl
+echo "zetjob_admin_job55_blk191_output_output" > input.tbl
 touch output1.tbl
 touch output2.tbl
-screwjack run docker --param-hdfs_root=hdfs://10.10.0.90/tmp/ \
-    --param-HiveServer2_Host=10.10.0.90 \
+screwjack run docker --param-hdfs_root=hdfs://10.10.0.87/tmp/ \
+    --param-HiveServer2_Host=10.10.0.87 \
     --param-HiveServer2_Port=10000 \
     --param-FILE_DIR=./resources/files \
     --param-UDF_DIR=./resources/udfs \

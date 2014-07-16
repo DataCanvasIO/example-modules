@@ -48,7 +48,7 @@ def get_s3_working_dir(settings, s3_bucket, path=""):
     ps = settings
     glb_vars = ps.GlobalParam
     remote_path = os.path.normpath(os.path.join(s3_bucket.name, 'zetjob', glb_vars['userName'], "job%s" % glb_vars['jobId'], "blk%s" % glb_vars['blockId'], path))
-    return os.path.join("s3://", remote_path)
+    return os.path.join("s3n://", remote_path)
 
 def upload_url_to_s3(settings, ds):
     p = settings.Param
@@ -61,7 +61,7 @@ def upload_url_to_s3(settings, ds):
     remote_dir = os.path.dirname(remote_filename_full)
     return {
         "Name": "Dummy datasource : %s" % remote_dir,
-        "Type": "AWS S3",
+        "Type": "AWS_S3",
         "URL": remote_dir,
         "Meta": {
             "key" : p.AWS_ACCESS_KEY_ID,
@@ -82,7 +82,7 @@ def main():
 
     if ds['Type'] in ["Http", "LocalFile", "Http", "Ftp"]:
         ds_output = upload_url_to_s3(settings, ds)
-    elif ds['Type'] in ["AWS S3"]:
+    elif ds['Type'] in ["AWS_S3"]:
         ds_output = upload_s3_to_s3(settings, ds)
     else:
         raise ValueError("Invalid type for input datasource: '%s'" % ds['Type'])
