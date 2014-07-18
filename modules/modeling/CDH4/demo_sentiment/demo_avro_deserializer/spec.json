@@ -3,7 +3,7 @@
     "Description" : "A demo module to deserialize avro data",
     "Version" : "0.1",
     "CategoryTags": ["demo_sentiment", "CDH4"],
-    "Cmd" : "/usr/bin/python main.py",
+    "Cmd" : "python main.py",
     "Param" : {
         "hdfs_root": {
             "Default": "",
@@ -25,7 +25,7 @@
             "Default": "",
             "Type": "string"
         },
-        "output_path": {
+        "S3_BUCKET": {
             "Default": "",
             "Type": "string"
         }
@@ -35,5 +35,9 @@
             "hdfs.avro"
         ]
     },
-    "Output" : { }
+    "Output" : {
+        "output_path": [
+            "s3.dir"
+        ]
+    }
 }
