@@ -1,0 +1,31 @@
+{
+    "Name" : "s3_publisher",
+    "Description" : "Mark s3 path as public data.",
+    "Version" : "0.2",
+    "CategoryTags": [],
+    "Cmd" : "python main.py",
+    "Param" : {
+        "AWS_ACCESS_KEY_ID": {
+            "Default": "",
+            "Type": "string"
+        },
+        "AWS_ACCESS_KEY_SECRET": {
+            "Default": "",
+            "Type": "string"
+        },
+        "Metadata_Type": {
+            "Default": "text/plain",
+            "Type": "string"
+        }
+    },
+    "Input" : {
+        "s3_path": [
+            "s3.dir"
+        ]
+    },
+    "Output" : {
+        "list_html": [
+            "sink.http"
+        ]
+    }
+}
