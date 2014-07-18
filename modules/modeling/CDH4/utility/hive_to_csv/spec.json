@@ -1,0 +1,39 @@
+{
+    "Name": "Hive_to_CSV",
+    "Description": "A hive to csv downloader",
+    "Version": "0.2",
+    "CategoryTags": ["CDH4", "utility"],
+    "Cmd": "python main.py",
+    "Param": {
+        "Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "Port": {
+            "Default": 10000,
+            "Type": "integer"
+        },
+        "Where_Clause": {
+            "Default": "",
+            "Type": "string"
+        },
+        "LIMIT" : {
+            "Default": 0,
+            "Type" : "integer"
+        },
+        "SCHEMA" : {
+            "Default" : "*",
+            "Type" : "string"
+        }
+    },
+    "Input": {
+        "input_tbl": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "O": [
+            "csv"
+        ]
+    }
+}
