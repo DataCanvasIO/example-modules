@@ -32,6 +32,8 @@ submit_module() {
         cd "$1" && \
         prebuild && \
         screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
+
+    cd $WORKING_ROOT_DIR
 }
 
 #######
@@ -42,8 +44,12 @@ login_spec_server
 # modules=( "hello" "world" )
 # modules=$(find modules/ -name Dockerfile -exec dirname {} \;)
 
-THIS_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
-modules=$(cat $THIS_DIR/modules)
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
+WORKING_ROOT_DIR=`pwd`
+
+MODULE_LIST_FILE=${MODULE_LIST_FILE:-$SCRIPT_DIR/modules}
+echo "Loading module file : '$MODULE_LIST_FILE'"
+modules=$(cat $MODULE_LIST_FILE)
 
 for i in ${modules[@]}; do
     echo "Submitting module at : $i"
@@ -55,7 +61,6 @@ for i in ${modules[@]}; do
     module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
     echo "submit $module_dirname version=$module_version ==> $module_tag_with_version"
     submit_module ./build
-    cd ../
 done
 
 rm -rf ./build/
