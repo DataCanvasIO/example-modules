@@ -5,13 +5,13 @@
     "CategoryTags": ["CDH4", "utility"],
     "Cmd": "python main.py",
     "Param": {
-        "Host": {
+        "HiveServer2_Host": {
             "Default": "",
             "Type": "string"
         },
-        "Port": {
-            "Default": 10000,
-            "Type": "integer"
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
         },
         "Where_Clause": {
             "Default": "",

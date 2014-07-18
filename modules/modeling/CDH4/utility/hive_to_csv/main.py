@@ -11,8 +11,8 @@ if __name__ == "__main__":
     settings = get_settings_from_file("spec.json")
     print(settings)
 
-    conn = pyhs2.connect(host=settings.Param.Host,
-            port=int(settings.Param.Port),
+    conn = pyhs2.connect(host=settings.Param.HiveServer2_Host,
+            port=int(settings.Param.HiveServer2_Port),
             authMechanism="PLAIN",
             user="hive",
             password="",
