@@ -1,7 +1,7 @@
 {
     "Name": "Hive_to_CSV",
     "Description": "A hive to csv downloader",
-    "Version": "0.2",
+    "Version": "0.1",
     "CategoryTags": ["CDH4", "utility"],
     "Cmd": "python main.py",
     "Param": {
