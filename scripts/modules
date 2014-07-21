@@ -21,3 +21,5 @@ modules/modeling/CDH4/demo_hero/tf_hive
 modules/data_source/datasource_to_s3
 modules/modeling/CDH4/demo_sentiment/demo_avro_deserializer
 modules/modeling/CDH4/demo_sentiment/demo_sentiment_analyzer
+modules/modeling/CDH4/utility/hive_to_csv
+modules/utility/s3_publisher
