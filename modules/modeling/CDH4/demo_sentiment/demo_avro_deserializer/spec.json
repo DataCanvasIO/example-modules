@@ -18,15 +18,15 @@
             "Type": "string"
         },
         "AWS_ACCESS_KEY_ID": {
-            "Default": "",
+            "Default": "$AWS_ACCESS_KEY_ID",
             "Type": "string"
         },
         "AWS_ACCESS_KEY_SECRET": {
-            "Default": "",
+            "Default": "$AWS_ACCESS_KEY_SECRET",
             "Type": "string"
         },
         "S3_BUCKET": {
-            "Default": "",
+            "Default": "$S3_BUCKET",
             "Type": "string"
         }
     },
