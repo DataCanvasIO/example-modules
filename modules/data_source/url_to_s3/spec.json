@@ -2,7 +2,7 @@
     "Name": "url_to_s3",
     "Description": "Download from a URL and upload to s3.",
     "Version": "0.1",
-    "CategoryTags": ["data_source", "s3", "utility"],
+    "CategoryTags": ["ETL"],
     "Cmd": "python main.py",
     "Param": {
         "AWS_ACCESS_KEY_ID": {

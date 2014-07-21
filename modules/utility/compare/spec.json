@@ -2,7 +2,7 @@
     "Name": "compare",
     "Description": "comparing the similarity of the two documents",
     "Version": "0.1",
-    "CategoryTags": ["basic", "utility"],
+    "CategoryTags": ["Basic"],
     "Cmd": "/usr/bin/python main.py",
     "Param": {},
     "Input": {

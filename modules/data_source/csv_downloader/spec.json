@@ -2,7 +2,7 @@
     "Name": "CSV_Downloader",
     "Description": "A csv downloader",
     "Version": "0.1",
-    "CategoryTags": ["data_source", "basic", "utility"],
+    "CategoryTags": ["Basic", "ETL"],
     "Cmd": "/usr/bin/python main.py",
     "Param": {
         "URI": {

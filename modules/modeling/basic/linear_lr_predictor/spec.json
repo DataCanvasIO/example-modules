@@ -2,7 +2,7 @@
     "Name": "LogisticRegression_Predictor",
     "Description": "A basic Logistic Regression Classifier Predictor",
     "Version": "0.1",
-    "CategoryTags": ["basic", "linear", "logistic", "regression", "predictor", "sci-python"],
+    "CategoryTags": ["Machine Learning"],
     "Cmd": "/usr/bin/python main.py",
     "Param": {},
     "Input": {

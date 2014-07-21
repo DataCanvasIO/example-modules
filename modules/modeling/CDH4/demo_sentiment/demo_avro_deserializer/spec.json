@@ -1,8 +1,8 @@
 {
-    "Name" : "demo_avro_deserializer",
-    "Description" : "A demo module to deserialize avro data",
+    "Name" : "avro_deserializer",
+    "Description" : "A module to deserialize avro data",
     "Version" : "0.1",
-    "CategoryTags": ["demo_sentiment", "CDH4"],
+    "CategoryTags": ["project_sentiment", "CDH4"],
     "Cmd" : "python main.py",
     "Param" : {
         "hdfs_root": {

@@ -1,4 +1,4 @@
-# demo_sentiment_analyzer
+# sentiment_analyzer
 
 # VERSION : 0.1
 

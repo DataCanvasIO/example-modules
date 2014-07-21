@@ -2,7 +2,7 @@
     "Name": "LinearSVC_Predictor",
     "Description": "A basic Linear Support Vector Classifier",
     "Version": "0.1",
-    "CategoryTags": ["basic", "linear", "SVC", "predictor", "sci-python"],
+    "CategoryTags": ["Machine Learning"],
     "Cmd": "/usr/bin/python main.py",
     "Param": {},
     "Input": {

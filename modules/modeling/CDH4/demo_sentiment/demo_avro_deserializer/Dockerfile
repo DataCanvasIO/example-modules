@@ -1,4 +1,4 @@
-# demo_avro_deserializer
+# avro_deserializer
 
 # VERSION : 0.1
 

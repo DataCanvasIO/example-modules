@@ -1,8 +1,8 @@
 {
-    "Name": "demo_sentiment_analyzer",
-    "Description": "Demo module for sentimental analysis",
+    "Name": "sentiment_analyzer",
+    "Description": "A module for sentimental analysis",
     "Version": "0.1",
-    "CategoryTags": ["demo_sentiment", "CDH4"],
+    "CategoryTags": ["project_sentiment", "CDH4"],
     "Cmd": "python main.py",
     "Param": {
         "hdfs_root": {

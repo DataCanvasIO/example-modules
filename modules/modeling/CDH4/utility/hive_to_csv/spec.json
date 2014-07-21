@@ -2,7 +2,7 @@
     "Name": "Hive_to_CSV",
     "Description": "A hive to csv downloader",
     "Version": "0.1",
-    "CategoryTags": ["CDH4", "utility"],
+    "CategoryTags": ["CDH4", "ETL"],
     "Cmd": "python main.py",
     "Param": {
         "HiveServer2_Host": {
