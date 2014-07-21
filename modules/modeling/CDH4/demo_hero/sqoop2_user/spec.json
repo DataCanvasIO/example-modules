@@ -9,15 +9,15 @@
     "Cmd": "/usr/bin/python main.py",
     "Param": {
         "hdfs_root": {
-            "Default": "",
+            "Default": "$hdfs_root",
             "Type": "string"
         },
         "Sqoop2Server_Host": {
-            "Default": "",
+            "Default": "$Sqoop2Server_Host",
             "Type": "string"
         },
         "Sqoop2Server_Port": {
-            "Default": "",
+            "Default": "$Sqoop2Server_Port",
             "Type": "string"
         }
     },

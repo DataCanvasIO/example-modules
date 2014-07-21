@@ -9,15 +9,15 @@
     "Cmd": "/usr/bin/python main.py",
     "Param": {
         "hdfs_root": {
-            "Default": "",
+            "Default": "$hdfs_root",
             "Type": "string"
         },
         "HiveServer2_Host": {
-            "Default": "",
+            "Default": "$HiveServer2_Host",
             "Type": "string"
         },
         "HiveServer2_Port": {
-            "Default": "",
+            "Default": "$HiveServer2_Port",
             "Type": "string"
         },
         "FILE_DIR": {

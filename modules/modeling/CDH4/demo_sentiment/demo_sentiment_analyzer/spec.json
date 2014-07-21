@@ -6,7 +6,7 @@
     "Cmd": "python main.py",
     "Param": {
         "hdfs_root": {
-            "Default": "",
+            "Default": "$hdfs_root",
             "Type": "string"
         },
         "yarn_resourcemanager": {
