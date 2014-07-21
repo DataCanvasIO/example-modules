@@ -6,19 +6,19 @@
     "Cmd": "python main.py",
     "Param": {
         "HiveServer2_Host": {
-            "Default": "",
+            "Default": "$HiveServer2_Host",
             "Type": "string"
         },
         "HiveServer2_Port": {
-            "Default": "",
+            "Default": "$HiveServer2_Port",
             "Type": "string"
         },
         "Where_Clause": {
-            "Default": "",
+            "Default": " ",
             "Type": "string"
         },
         "LIMIT" : {
-            "Default": 0,
+            "Default": 100,
             "Type" : "integer"
         },
         "SCHEMA" : {
