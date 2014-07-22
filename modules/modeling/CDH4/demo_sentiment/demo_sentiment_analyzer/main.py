@@ -5,6 +5,11 @@ from specparser import HadoopRuntime
 import json
 import os
 import sys
+import subprocess
+
+def cmd(cmd_str):
+    ret = subprocess.call(cmd_str, shell=True)
+    return ret
 
 def main():
     hr = HadoopRuntime("spec.json")
@@ -46,7 +51,8 @@ def main():
     cmd_str = '%s hadoop jar %s %s %s %s' % (hadoop_params_str, jar_file, jar_defs_str, ds['URL'], output_dir)
     print("Executing:")
     print(cmd_str)
-    ret = os.system(cmd_str)
+    ret = cmd(cmd_str)
+    print("exit code = %d" % ret)
     sys.exit(ret)
 
 if __name__ == "__main__":
