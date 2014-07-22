@@ -7,6 +7,11 @@ import boto
 import json
 import os
 import sys
+import subprocess
+
+def cmd(cmd_str):
+    ret = subprocess.call(cmd_str, shell=True)
+    return ret
 
 def s3_delete(s3_path, settings):
     from urlparse import urlparse
@@ -76,7 +81,7 @@ def main():
     cmd_str = '%s hadoop jar %s %s %s' % (hadoop_params_str, jar_file, jar_defs_str, other_args_str)
     print("Executing:")
     print(cmd_str)
-    ret = os.system(cmd_str)
+    ret = cmd(cmd_str)
     if ret != 0:
         print("Job failed")
         sys.exit(ret)
