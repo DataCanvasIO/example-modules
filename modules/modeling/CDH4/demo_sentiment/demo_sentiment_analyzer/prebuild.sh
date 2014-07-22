@@ -23,4 +23,4 @@ download() {
 
 echo "Prebuilding for sentiment analysis..."
 
-download https://s3.amazonaws.com/datacanvas-modules/demo_sentiment_analyzer/0.1/HelloAvro-1.0-SNAPSHOT-jar-with-dependencies.jar
+download https://s3.amazonaws.com/datacanvas-modules/demo_sentiment_analyzer/HelloAvro-1.1-jar-with-dependencies.jar

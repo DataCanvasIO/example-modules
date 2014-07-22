@@ -25,7 +25,7 @@ def main():
     AWS_SECRET_ACCESS_KEY = ds['Meta']['token']
 
     # Execute "hadoop jar"
-    jar_file = "HelloAvro-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    jar_file = "HelloAvro-1.1-jar-with-dependencies.jar"
     hadoop_params = {}
     hadoop_params["HADOOP_MAPRED_HOME"] = "/usr/lib/hadoop-mapreduce"
     hadoop_params["AWS_ACCESS_KEY_ID"] = ds['Meta']['key']

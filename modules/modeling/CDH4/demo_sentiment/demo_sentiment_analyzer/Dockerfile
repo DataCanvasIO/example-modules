@@ -10,4 +10,4 @@ RUN pip install boto
 ADD spec.json /home/run/
 ADD main.py /home/run/
 ADD specparser.py /home/run/
-ADD HelloAvro-1.0-SNAPSHOT-jar-with-dependencies.jar /home/run/
+ADD HelloAvro-1.1-jar-with-dependencies.jar /home/run/
