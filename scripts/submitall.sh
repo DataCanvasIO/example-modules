@@ -32,8 +32,12 @@ submit_module() {
         cd "$1" && \
         prebuild && \
         screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit
-
-    cd $WORKING_ROOT_DIR
+    if [ $? -eq 0 ]; then
+        cd $WORKING_ROOT_DIR
+    else
+        cd $WORKING_ROOT_DIR
+        exit 3
+    fi
 }
 
 #######
