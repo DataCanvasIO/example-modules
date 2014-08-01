@@ -1,0 +1,29 @@
+{
+    "Name" : "datasource_to_hdfs",
+    "Description" : "A module to upload datasource to hdfs",
+    "Version" : "0.1",
+    "CategoryTags": [ "ETL", "CDH4" ],
+    "Cmd" : "python main.py",
+    "Param" : {
+        "hdfs_root": {
+            "Default": "$hdfs_root",
+            "Type": "string"
+        },
+        "yarn_resourcemanager": {
+            "Default": "127.0.0.1:8032",
+            "Type": "string"
+        },
+        "yarn_resourcemanager_scheduler": {
+            "Default": "127.0.0.1:8030",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "DS": [ "datasource" ]
+    },
+    "Output": {
+        "dest_hdfs": [
+            "datasource.hdfs"
+        ]
+    }
+}
