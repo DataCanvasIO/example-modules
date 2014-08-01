@@ -3,7 +3,7 @@
 # VERSION : 0.1
 
 FROM zetdata/ubuntu:trusty
-# MAINTAINER Your_name, Your_email_address
+MAINTAINER Xiaolin Zhang, zhangxl@zetyun.com
 
 RUN pip install boto
 
