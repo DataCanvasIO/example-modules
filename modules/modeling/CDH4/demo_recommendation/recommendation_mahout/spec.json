@@ -1,0 +1,46 @@
+{
+    "Name" : "recommendation_mahout",
+    "Description" : "A recommendation module by mahout",
+    "Version" : "0.1",
+    "CategoryTags": ["CDH4"],
+    "Cmd" : "python main.py",
+    "Param" : {
+        "hdfs_root": {
+            "Default": "$hdfs_root",
+            "Type": "string"
+        },
+        "yarn_resourcemanager": {
+            "Default": "127.0.0.1:8032",
+            "Type": "string"
+        },
+        "yarn_resourcemanager_scheduler": {
+            "Default": "127.0.0.1:8030",
+            "Type": "string"
+        },
+        "AWS_ACCESS_KEY_ID": {
+            "Default": "$AWS_ACCESS_KEY_ID",
+            "Type": "string"
+        },
+        "AWS_ACCESS_KEY_SECRET": {
+            "Default": "$AWS_ACCESS_KEY_SECRET",
+            "Type": "string"
+        },
+        "S3_BUCKET": {
+            "Default": "$S3_BUCKET",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "ratings": [
+            "datasource.hdfs"
+        ],
+        "usersFile": [
+            "datasource.hdfs"
+        ]
+    },
+    "Output": {
+        "output_path": [
+            "s3.dir"
+        ]
+    }
+}
