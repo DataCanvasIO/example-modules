@@ -14,7 +14,7 @@ build_module() {
         cd "$1" && \
         prebuild && \
         echo "$2!!!!!!!!!"
-        sudo docker build -t $2 ./
+        sudo docker build --no-cache=true -t $2 ./
     if [ $? -eq 0 ]; then
         cd $WORKING_ROOT_DIR
     else
