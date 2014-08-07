@@ -17,7 +17,7 @@ fi
 #######
 # Main
 #######
-# login_spec_server
+login_spec_server
 
 # modules=( "hello" "world" )
 # modules=$(find modules/ -name Dockerfile -exec dirname {} \;)
