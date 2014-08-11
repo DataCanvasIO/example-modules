@@ -10,12 +10,37 @@
 #   - DOCKER_USER     (optional)
 #
 
+get_module_version() {
+    local original_dir=$1
+    cat $original_dir/spec.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["Version"]'
+}
+
+get_module_name() {
+    local original_dir=$1
+    cat $original_dir/spec.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["Name"]'
+}
+
+get_module_docker_name() {
+    local original_dir=$1
+    cat $original_dir/spec.json | python -c 'import json,sys,re;obj=json.load(sys.stdin);print re.sub(r"\s+", "_", obj["Name"].lower())'
+}
+
+get_module_docker_tag() {
+    local original_dir=$1
+    cat $original_dir/spec.json | python -c 'import json,sys,re;obj=json.load(sys.stdin);print re.sub(r"\s+", "_", obj["Name"].lower())'
+}
+
+get_module_docker_tagv() {
+    local original_dir=$1
+    cat $original_dir/spec.json | python -c 'import json,sys,re;obj=json.load(sys.stdin);print "%s:%s" % (re.sub(r"\s+", "_", obj["Name"].lower()), obj["Version"])'
+}
+
 show_info() {
     local original_dir=$1
-    module_dirname=$(basename $original_dir)
-    module_version=$( cat $original_dir/spec.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["Version"]')
-    module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname"
-    module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
+    local module_name=$(get_module_docker_name $original_dir)
+    local module_version=$(get_module_version $original_dir)
+    local module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_name"
+    local module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_name:$module_version"
 }
 
 login_spec_server() {
@@ -58,11 +83,11 @@ submit_module() {
     echo "Submitting module at : $original_dir"
     rm -rf $dir
     cp -Lrfp $original_dir $dir
-    local module_dirname=$(basename $original_dir)
-    local module_version=$( cat $original_dir/spec.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["Version"]')
-    local module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname"
-    local module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
-    echo "submit $module_dirname version=$module_version ==> $module_tag_with_version"
+    local module_name=$(get_module_docker_name $original_dir)
+    local module_version=$(get_module_version $original_dir)
+    local module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_name"
+    local module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_name:$module_version"
+    echo "submit $module_name version=$module_version ==> $module_tag_with_version"
 
     [[ -d "$dir" ]] && \
         cd "$dir" && \
@@ -90,11 +115,11 @@ submit_import_module() {
     echo "Submit-Import module at : $original_dir"
     rm -rf $dir
     cp -Lrfp $original_dir $dir
-    local module_dirname=$(basename $original_dir)
-    local module_version=$( cat $original_dir/spec.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["Version"]')
-    local module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname"
-    local module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
-    echo "submit $module_dirname version=$module_version ==> $module_tag_with_version"
+    local module_name=$(get_module_docker_name $original_dir)
+    local module_version=$(get_module_version $original_dir)
+    local module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_name"
+    local module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_name:$module_version"
+    echo "submit_import $module_name version=$module_version ==> $module_tag_with_version"
 
     [[ -d "$dir" ]] && \
         cd "$dir" && \
@@ -124,11 +149,11 @@ build_module_locally() {
     rm -rf $dir
     cp -Lrfp $original_dir $dir
 
-    local module_dirname=$(basename $original_dir)
-    local module_version=$( cat $original_dir/spec.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["Version"]')
-    local module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname"
-    local module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_dirname:$module_version"
-    echo "build $module_dirname version=$module_version ==> $module_tag_with_version"
+    local module_name=$(get_module_docker_name $original_dir)
+    local module_version=$(get_module_version $original_dir)
+    local module_tag="$DOCKER_REGISTRY/$DOCKER_USER/$module_name"
+    local module_tag_with_version="$DOCKER_REGISTRY/$DOCKER_USER/$module_name:$module_version"
+    echo "build $module_name version=$module_version ==> $module_tag_with_version"
 
     [[ -d "$dir" ]] && \
         cd "$dir" && \
