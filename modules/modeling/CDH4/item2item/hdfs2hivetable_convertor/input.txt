@@ -1,0 +1,6 @@
+{
+    "Name": "",
+    "Type": "HDFS",
+    "URL": "hdfs://192.168.1.20/tmp/jiaqi/item2item/transaction/transaction.csv",
+    "Meta": {}
+}
