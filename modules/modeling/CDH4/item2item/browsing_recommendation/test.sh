@@ -1,3 +1,8 @@
+#!/bin/bash
+
+echo "recm_raw_browsing" > input.txt
+touch ./output.txt
+
 screwjack run docker \
   --param-hdfs_root  hdfs://192.168.1.20 \
   --param-HiveServer2_Host 192.168.1.20 \
