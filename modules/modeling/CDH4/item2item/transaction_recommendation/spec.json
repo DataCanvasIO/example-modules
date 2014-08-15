@@ -1,20 +1,24 @@
 {
     "Name": "transaction_recommendation",
     "Description": "Given the transaction record to predict the cosine similarity between items.",
+<<<<<<< HEAD
     "Version": "0.25",
+=======
+    "Version": "0.1",
+>>>>>>> a4faddbc419f09423d11a7e66584194e697b40fe
     "CategoryTags": [],
     "Cmd": "python main.py",
     "Param": {
         "hdfs_root": {
-            "Default": "",
+            "Default": "$hdfs_root",
             "Type": "string"
         },
         "HiveServer2_Host": {
-            "Default": "",
+            "Default": "$HiveServer2_Host",
             "Type": "string"
         },
         "HiveServer2_Port": {
-            "Default": "",
+            "Default": "$HiveServer2_Port",
             "Type": "string"
         },
         "FILE_DIR": {

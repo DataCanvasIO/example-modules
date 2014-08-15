@@ -1,5 +1,6 @@
 #!/bin/bash
 
+<<<<<<< HEAD
 echo "recm_raw_transaction" >> input.txt
 touch out.txt
 
@@ -12,3 +13,6 @@ screwjack run docker \
   --param-topN  1 \
   --input_table ./input.txt \
   --output_table ./output.txt
+=======
+echo "zetjob_jiaqi_job456_blk789_OUTPUT_output" > input.txt
+>>>>>>> a4faddbc419f09423d11a7e66584194e697b40fe
