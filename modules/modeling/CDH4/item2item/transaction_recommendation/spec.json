@@ -1,7 +1,7 @@
 {
     "Name": "transaction_recommendation",
     "Description": "Given the transaction record to predict the cosine similarity between items.",
-    "Version": "0.2",
+    "Version": "0.25",
     "CategoryTags": [],
     "Cmd": "python main.py",
     "Param": {
@@ -23,6 +23,10 @@
         },
         "UDF_DIR": {
             "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "topN": {
+            "Default": "",
             "Type": "string"
         }
     },
