@@ -1,7 +1,7 @@
 {
     "Name": "keywords_recommendation",
     "Description": "Given the query log to predict similarity between items.",
-    "Version": "0.11",
+    "Version": "0.1",
     "CategoryTags": [],
     "Cmd": "python main.py",
     "Param": {

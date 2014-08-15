@@ -1,7 +1,7 @@
 {
     "Name": "comprehensive_recommendation",
     "Description": "Merge four part recommendation with custom weights",
-    "Version": "0.12",
+    "Version": "0.1",
     "CategoryTags": [],
     "Cmd": "python main.py",
     "Param": {
