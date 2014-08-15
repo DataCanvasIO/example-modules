@@ -1,0 +1,68 @@
+{
+    "Name": "comprehensive_recommendation",
+    "Description": "Merge four part recommendation with custom weights",
+    "Version": "0.12",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "weight1": {
+            "Default": "",
+            "Type": "string"
+        },
+        "weight2": {
+            "Default": "",
+            "Type": "string"
+        },
+        "weight3": {
+            "Default": "",
+            "Type": "string"
+        },
+        "weight4": {
+            "Default": "",
+            "Type": "string"
+        },
+        "topN": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "input_table1": [
+            "hive.table"
+        ],
+        "input_table2": [
+            "hive.table"
+        ],
+        "input_table3": [
+            "hive.table"
+        ],
+        "input_table4": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "output_table": [
+            "hive.table"
+        ]
+    }
+}
