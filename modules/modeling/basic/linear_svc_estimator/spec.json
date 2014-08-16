@@ -1,0 +1,24 @@
+{
+    "Name": "linear_svc_estimator",
+    "Description": "Give a precise and recall to a linear svc model",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {},
+    "Input": {
+        "MODEL": [
+            "svm.joblib"
+        ],
+        "X": [
+            "csv"
+        ],
+        "Y": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "report": [
+            "pdf"
+        ]
+    }
+}
