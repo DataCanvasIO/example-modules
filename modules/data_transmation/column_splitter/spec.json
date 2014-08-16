@@ -1,0 +1,26 @@
+{
+    "Name": "column_splitter",
+    "Description": "Split a csv file in two file in column.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "split_index": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "input_file": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "output1": [
+            "csv"
+        ],
+        "output2": [
+            "csv"
+        ]
+    }
+}

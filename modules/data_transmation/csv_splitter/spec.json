@@ -1,0 +1,30 @@
+{
+    "Name": "csv_splitter",
+    "Description": "Split a csv file into two files by a custom ratio",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "train_ratio": {
+            "Default": "",
+            "Type": "string"
+        },
+        "random_seed": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "input_file": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "train_file": [
+            "csv"
+        ],
+        "test_file": [
+            "csv"
+        ]
+    }
+}
