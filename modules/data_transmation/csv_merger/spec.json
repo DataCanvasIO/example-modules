@@ -1,0 +1,21 @@
+{
+    "Name": "csv_merger",
+    "Description": "Combinator two csv file into one.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {},
+    "Input": {
+        "x": [
+            "csv"
+        ],
+        "y": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "merged_file": [
+            "csv"
+        ]
+    }
+}
