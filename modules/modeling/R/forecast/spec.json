@@ -1,0 +1,44 @@
+{
+    "Name": "forecast",
+    "Description": "forecast on time series",
+    "Version": "0.1",
+    "CategoryTags": [
+        "Machine Learning"
+    ],
+    "Cmd": "python main.py",
+    "Param": {
+        "column_name": {
+            "Default": "Adj.Close",
+            "Type": "string"
+        },
+        "start": {
+            "Default": "1993 3",
+            "Type": "string"
+        },
+        "end": {
+            "Default": "2008 3",
+            "Type": "string"
+        },
+        "forecast_number": {
+            "Default": "10",
+            "Type": "integer"
+        },
+        "frequency": {
+            "Default": "12",
+            "Type": "integer"
+        }
+    },
+    "Input": {
+        "TimeSeries": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "Forecast": [
+            "csv"
+        ],
+        "PlotPdf": [
+            "pdf"
+        ]
+    }
+}
