@@ -1,6 +1,6 @@
 {
     "Name": "forecast",
-    "Description": "forecast on time series",
+    "Description": "forecast on time series. Source code repository : https://github.com/DataCanvasIO/example-modules/tree/master/modules/modeling/R/forecast",
     "Version": "0.1",
     "CategoryTags": [
         "Machine Learning"

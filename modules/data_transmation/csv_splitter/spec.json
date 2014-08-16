@@ -1,6 +1,6 @@
 {
     "Name": "csv_splitter",
-    "Description": "Split a csv file into two files by a custom ratio",
+    "Description": "Split a csv file into two files by a custom ratio. Source code repository: https://github.com/DataCanvasIO/example-modules/tree/master/modules/data_transmation/csv_splitter",
     "Version": "0.1",
     "CategoryTags": [],
     "Cmd": "python main.py",

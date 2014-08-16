@@ -1,6 +1,6 @@
 {
     "Name": "column_splitter",
-    "Description": "Split a csv file in two file in column.",
+    "Description": "Split a csv file in two file in column. Source code repository: https://github.com/DataCanvasIO/example-modules/blob/master/modules/data_transmation/column_splitter/",
     "Version": "0.1",
     "CategoryTags": [],
     "Cmd": "python main.py",
