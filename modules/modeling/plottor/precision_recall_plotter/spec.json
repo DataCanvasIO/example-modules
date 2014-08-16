@@ -1,0 +1,21 @@
+{
+    "Name": "precision_recall_plotter",
+    "Description": "Precision recall plotter",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {},
+    "Input": {
+        "conclusion": [
+            "csv"
+        ],
+        "label": [
+            "csv"
+        ]
+    },
+    "Output": {
+        "report": [
+            "pdf"
+        ]
+    }
+}
