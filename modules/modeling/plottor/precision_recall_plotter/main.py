@@ -8,7 +8,7 @@ matplotlib.use('Agg')
 
 from matplotlib.backends.backend_pdf import PdfPages
 import matplotlib.pyplot as plt
-
+import math
 
 
 def drawPrecisionRecall(X,Y,output_file):
@@ -41,6 +41,17 @@ def main():
     recall_list = []
 
     hits = 0
+    
+    if(math.fabs(len(label)-len(conclusion)) > 1):
+        raise Exception("The conclusion size is different from the label size. Can not plot. Check input please.")
+    
+    if(len(label) - len(conclusion) == 1 ): #label file got a header on the top
+        label = label[1:]
+        print "There is a header on your label csv file."
+    if(len(conclusion) - len(label) == 1 ): #conculsion may got a header on the top
+        conclusion = conclusion[1:]
+        print "There is a header on your conclusion csv file."
+   
     for i in range(len(label)):
         if conclusion[i] == label[i]:
             hits+=1
