@@ -23,6 +23,7 @@ def get_header_data(filename):
     try:
         with open(filename, "rb") as f:
             dialect, has_header = sniff_csv(f)
+	    dialect.delimiter =','
             data = list(csv.reader(f, dialect))
             if has_header:
                 data_header = data[0]
@@ -59,12 +60,12 @@ def main():
         left_part[1].extend(right_part[1])
         writer.writerow(left_part[1])
     if(len(left_part[2]) != len(right_part[2])):
-        raise Exception
+        raise Exception("The x.csv has a different line number from y.csv. Can not merge.")
      
     
     for i in range(len(left_part[2])):
         l = left_part[2][i]
-        r = right_part[2][i]   
+        r = right_part[2][i] 
         l.extend(r)
         writer.writerow(l)
     file_merged.close()
