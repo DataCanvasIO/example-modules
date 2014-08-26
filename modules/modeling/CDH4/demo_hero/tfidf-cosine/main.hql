@@ -80,21 +80,23 @@ LEFT OUTER JOIN ${MYNS}hunter_tfidf hunter_tfidf;
 --UNION THE DIRECT MATCH
 -------------------------------------
 DROP TABLE IF EXISTS ${OUTPUT_output_table};
-CREATE TABLE ${OUTPUT_output_table} (aid STRING,bid STRING,score DOUBLE,b_type TINYINT)
-ROW FORMAT DELIMITED FIELDS TERMINATED BY '\t';
+CREATE TABLE ${OUTPUT_output_table} (aid STRING,bid STRING,score DOUBLE,a_type TINYINT,timestp BIGINT,pushIND INT)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
 
 
 INSERT OVERWRITE TABLE ${OUTPUT_output_table}
 SELECT union_input.aid,
        union_input.bid,
        union_input.score,
-       b_type
+       a_type,
+       unix_timestamp() AS timestp,
+       0 AS pushIND
 FROM
 (
-    SELECT hunter_id AS aid,applicant_id AS bid,score , 0 AS b_type
+    SELECT hunter_id AS aid,applicant_id AS bid,score , 0 AS a_type
     FROM ${MYNS}match_result_h2a WHERE score > 0
 UNION ALL
-    SELECT applicant_id AS aid, hunter_id AS bid, score, 1 AS b_type
+    SELECT applicant_id AS aid, hunter_id AS bid, score, 1 AS a_type
     FROM ${MYNS}match_result_a2h WHERE score > 0
 )union_input;
 
