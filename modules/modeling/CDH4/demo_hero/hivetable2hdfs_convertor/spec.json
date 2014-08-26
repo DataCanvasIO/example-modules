@@ -1,0 +1,27 @@
+{
+    "Name": "hivetable2hdfs_convertor",
+    "Description": "Get the hdfs directory given the hive table name",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "table_name": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "output_dir": [
+            "hdfs.directory"
+        ]
+    }
+}
