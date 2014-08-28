@@ -32,16 +32,18 @@
 """
 A minimum spec.json parser.
 """
-__version__ = "0.2.8"
+__version__ = "0.2.14"
 __author__ = "xiaolin"
 
 import json
 from collections import namedtuple
 import types
+import re
 import os
 import sys
 import time
 import itertools
+import subprocess
 
 def gettype(name):
     type_map = {
@@ -87,9 +89,17 @@ class Input(str):
     def as_file(self, mode="r"):
         return open(self.x, mode)
 
+    def as_datasource(self, mode="r"):
+        ds = json.loads(open(self.x, mode).read())
+        return ds
+
     @property
     def val(self):
-        return self.as_first_line()
+        # TODO: fix types handling
+        if any([re.match(r"datasource.*", t) for t in self._types]):
+            return self.as_datasource()['URL']
+        else:
+            return self.as_first_line()
 
     @property
     def types(self):
@@ -548,7 +558,7 @@ class PigRuntime(HadoopRuntime):
             pf.write("fs.default.name=%s\n" % ps.Param.hdfs_root)
             pf.write("yarn.resourcemanager.address=%s\n" % ps.Param.yarn_address)
             pf.write("yarn.resourcemanager.scheduler.address=%s\n" % ps.Param.yarn_scheduler_address)
-        os.system("cat /home/run/pig.properties")
+        cmd("cat /home/run/pig.properties")
 
     def execute(self, pig_script):
         self.clean_working_dir()
@@ -559,8 +569,7 @@ class PigRuntime(HadoopRuntime):
         print(open(generated_pig_script).read())
         print("=========================================")
         print("EmrHiveRuntime.execute()")
-        ret = os.system("pig -x mapreduce -P /home/run/pig.properties %s" % generated_pig_script)
-        print(ret)
+        cmd("pig -x mapreduce -P /home/run/pig.properties %s" % generated_pig_script)
 
 class EmrPigRuntime(EmrRuntime, PigRuntime):
     def __init__(self, spec_filename="spec.json"):
@@ -686,8 +695,10 @@ def emr_wait_job(emr_conn, job_flow_id):
     return False
 
 def cmd(cmd_str):
-    print(cmd_str)
-    return os.system(cmd_str)
+    print("Execute External Command : '%s'" % cmd_str)
+    ret = subprocess.call(cmd_str, shell=True)
+    print("Exit with exit code = %d" % ret)
+    return ret
 
 if __name__ == "__main__":
     # settings = get_settings_from_file("spec.json")

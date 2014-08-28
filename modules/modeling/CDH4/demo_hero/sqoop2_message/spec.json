@@ -19,6 +19,18 @@
         "Sqoop2Server_Port": {
             "Default": "$Sqoop2Server_Port",
             "Type": "string"
+        },
+        "connection_string": {
+            "Default": "$connection_string",
+            "Type": "string"
+        },
+        "connection_username": {
+            "Default": "$connection_username",
+            "Type": "string"
+        },
+        "connection_password": {
+            "Default": "$connection_password",
+            "Type": "string"
         }
     },
     "Input": {},

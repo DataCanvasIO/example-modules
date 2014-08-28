@@ -1,17 +1,13 @@
 {
-    "Name": "sqoop2_user",
-    "Description": "sqoop2 client to post requset of transfering user data",
+    "Name": "sqoop2_exporter",
+    "Description": "Create sqoop2 job to export data from hdfs path.",
     "Version": "0.1",
     "CategoryTags": [
         "project_match",
         "CDH4"
-    ],
-    "Cmd": "/usr/bin/python main.py",
+     ],
+    "Cmd": "python main.py",
     "Param": {
-        "hdfs_root": {
-            "Default": "$hdfs_root",
-            "Type": "string"
-        },
         "Sqoop2Server_Host": {
             "Default": "$Sqoop2Server_Host",
             "Type": "string"
@@ -31,12 +27,16 @@
         "connection_password": {
             "Default": "$connection_password",
             "Type": "string"
+        },
+        "table_name": {
+            "Default": "",
+            "Type": "string"
         }
     },
-    "Input": {},
-    "Output": {
-        "user_dir": [
-            "hdfs.user"
+    "Input": {
+        "hdfs_path": [
+            "hdfs.directory"
         ]
-    }
+    },
+    "Output": {}
 }

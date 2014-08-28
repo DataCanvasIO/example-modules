@@ -32,14 +32,14 @@
 """
 A mini sqoop2 REST api library.
 """
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __author__ = "xiaolin"
 
 import requests
 import json
 import copy
 import urllib
-
+import re
 import time
 
 def current_milli_time():
@@ -51,6 +51,9 @@ class MySqoop(object):
 
     def version(self):
         return requests.get(self._svc_root + "/version").json()
+
+    def framework(self):
+        return requests.get(self._svc_root + "/v1/framework").json()
 
     def connection(self, xid=None):
         if not xid:
@@ -70,7 +73,16 @@ class MySqoop(object):
             raise Exception("Sqoop2 Connection '%s' not found" % name)
         return conn_dict[name]
 
-    def create_connection(self, name, framework_params, connector_params):
+    def get_connection_inputs(self, connection_name):
+        connection = self.get_connection_by_name(connection_name)
+        input_dict = {
+            c['name']:urllib.unquote(c["value"])
+            for c in connection['connector'][0]['inputs']
+            if "value" in c
+        }
+        return input_dict
+
+    def _create_connection(self, name, framework_params, connector_params):
         r = self.framework()
         framework_import_form = copy.deepcopy(r['con-forms'])
         for f in framework_import_form:
@@ -80,7 +92,7 @@ class MySqoop(object):
 
         connector = self.connector()['all'][0]
         connector_forms = copy.deepcopy(connector['con-forms'])
-        pp(connector_forms)
+        # pp(connector_forms)
         for c in connector_forms:
             for ci in c['inputs']:
                 if ci['name'] in connector_params:
@@ -89,27 +101,52 @@ class MySqoop(object):
         now_time = current_milli_time()
         new_d = {
             "id": -1,
-            "enable": True,
-            "updated": now_time,
-            "created": now_time,
+            "enabled": True,
+            "update-date": now_time,
+            "creation-date": now_time,
             "name": name,
             "connector": connector_forms,
             "connector-id": connector['id'],
-            "framework": framework_import_form
+            "framework": framework_import_form,
+            "update-user": None,
+            "creation-user" : "xiaolin"
         }
         all_d = { "all": [ new_d ] }
+        print("=====================")
+        pp(all_d)
+        print("=====================")
         r = requests.post(self._svc_root + "/v1/connection", data=json.dumps(all_d), headers={'content-type': 'application/json'})
         if r.status_code != 200:
             print("--------------------")
             pp(all_d)
             pp(r.status_code)
-            pp(r.text)
+            pp(r.json())
             raise Exception("Failed to create a connection")
         else:
             return r.json()
 
-    def framework(self):
-        return requests.get(self._svc_root + "/v1/framework").json()
+    def create_connection(self, conn_name, conn_str, username, password):
+        jdbc_cfg = parse_jdbc(conn_str)
+
+        jdbc_driver_dict = {
+                "sqlserver" : "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+        }
+        if not jdbc_cfg['name'] in jdbc_driver_dict:
+            raise ValueError("Do not support jdbc driver '%s'" % jdbc_cfg['name'])
+
+        fw_ps = { }
+        co_ps = {
+                "connection.jdbcDriver": jdbc_driver_dict[jdbc_cfg['name']],
+                "connection.connectionString": conn_str,
+                "connection.username": username,
+                "connection.password": password
+        }
+
+        return self._create_connection(conn_name, fw_ps, co_ps)
+
+    def delete_connection_by_id(self, cid):
+        print "Delete connection %d" % int(cid)
+        return requests.delete(self._svc_root + "/v1/connection/%d" % int(cid)).json()
 
     def get_job(self, jid=None):
         if not jid:
@@ -117,17 +154,21 @@ class MySqoop(object):
         else:
             return requests.get(self._svc_root + "/v1/job/" + str(jid)).json()
 
-    def create_import_job(self, job_name, connection_name, framework_params, job_params):
+    def create_job(self, job_name, connection, framework_params, job_params, job_type):
+        if not job_type.upper() in ["IMPORT", "EXPORT"]:
+            raise ValueError("Invalid type job type")
+
+        job_type = job_type.upper()
+
         r = self.framework()
-        framework_import_form = copy.deepcopy(r['job-forms']['IMPORT'])
-        for f in framework_import_form:
+        framework_form = copy.deepcopy(r['job-forms'][job_type])
+        for f in framework_form:
             for fi in f['inputs']:
                 if fi['name'] in framework_params:
                     fi['value'] = urllib.quote(framework_params[fi['name']], '')
 
-        connection = self.get_connection_by_name(connection_name)
         connector = self.connector(connection['connector'][0]['id'])
-        connector_job_form = copy.deepcopy(connector['all'][0]['job-forms']['IMPORT'])
+        connector_job_form = copy.deepcopy(connector['all'][0]['job-forms'][job_type])
         for c in connector_job_form:
             for ci in c['inputs']:
                 if ci['name'] in job_params:
@@ -139,12 +180,12 @@ class MySqoop(object):
             'connector': connector_job_form,
             'connector-id': 1,
             "creation-date": now_time,
-            "creation-user": None, 
-            "enabled": True, 
-            "framework": framework_import_form,
-            "id": -1, 
+            "creation-user": None,
+            "enabled": True,
+            "framework": framework_form,
+            "id": -1,
             "name": job_name,
-            "type": "IMPORT", 
+            "type": job_type,
             "update-date": now_time,
             "update-user": None
         }
@@ -153,14 +194,22 @@ class MySqoop(object):
         r = requests.post(self._svc_root + "/v1/job", data=json.dumps(all_d), headers={'content-type': 'application/json'})
         if r.status_code != 200:
             pp(all_d)
-            raise Exception("Failed to create a import job")
+            raise Exception("Failed to create a '%s' job" % job_type)
         else:
             return r.json()
+
+    def create_import_job(self, job_name, connection_id, framework_params, job_params):
+        connection = self.connection(connection_id)['all'][0]
+        return self.create_job(job_name, connection, framework_params, job_params, job_type="IMPORT")
+
+    def create_export_job(self, job_name, connection_id, framework_params, job_params):
+        connection = self.connection(connection_id)['all'][0]
+        return self.create_job(job_name, connection, framework_params, job_params, job_type="EXPORT")
 
     def delete_job(self, jid):
         r = requests.delete(self._svc_root + "/v1/job/" + str(jid))
         if r.status_code != 200:
-            raise Exception("Failed to delete a import job: '%s', status_code=%s" % (str(jid), r.status_code))
+            raise Exception("Failed to delete a job: '%s', status_code=%s" % (str(jid), r.status_code))
         else:
             return r.json()
 
@@ -188,55 +237,76 @@ class MySqoop(object):
             if ret['all'][0]['status'] in ['FAILURE_ON_SUBMIT']:
                 raise Exception("Failed to run a job: '%s'" % str(jid))
 
-            if ret['all'][0]['status'] in ['SUCCEEDED', 'UNKNOWN']:
+            if ret['all'][0]['status'] in ['SUCCEEDED', 'UNKNOWN', 'FAILED']:
                 return r
 
 def pp(j):
     print(json.dumps(j, indent=4, sort_keys=True))
 
-def main():
-    sqoop = MySqoop("192.168.1.20", 12000)
-    # pp(sqoop.get_job())
-    # print(sqoop.version())
-    # pp(sqoop.connection(1))
-    # pp(sqoop.connector(1))
-    # pp(sqoop.get_xid_by_name("zdwechat message"))
-    # pp(sqoop.get_xid_by_name("xxx"))
-    # r = sqoop.create_job()
-    # r = sqoop.framework()
-    # pp(r)
-    # sqoop.delete_all_jobs()
+def parse_jdbc(name):
+    pattern = re.compile(r'''
+            jdbc:
+            (?P<name>[\w\+]+)://
+            (?:
+                (?P<username>[^:/]*)
+                (?::(?P<password>.*))?
+            @)?
+            (?:
+                (?:
+                    \[(?P<ipv6host>[^/]+)\] |
+                    (?P<ipv4host>[^/:;]+)
+                )?
+                (?::(?P<port>[^/]*))?
+            )?
+            (?:/(?P<database>[^;]*))?
+            (?P<meta_params>;.*)?
+    ''', re.X)
 
+    meta_pattern = re.compile(r'''
+            (?P<key>[^=;]+)=(?P<val>[^=;]+)
+    ''', re.VERBOSE)
 
-    fw_ps = {
-        "output.storageType": "HDFS",
-        "output.outputFormat": "TEXT_FILE",
-        "output.outputDirectory": "/tmp/jiaqi/messageh"
-    }
-    job_ps = {
-        "table.sql": "select UserId,Description,RefreshDate from Message where ${CONDITIONS}",
-        "table.partitionColumn": "UserId"
-    }
-    r = sqoop.create_import_job(job_name="zdwechat message",
-                                connection_name="zdwechat message",
-                                framework_params=fw_ps,
-                                job_params=job_ps)
-    pp(r)
-    sqoop.run_job(r['id'])
-    sqoop.wait_job(r['id'])
-    # sqoop.delete_job(r['id'])
+    m = pattern.match(name)
+    if m is not None:
+        ret = m.groupdict()
+        if m.group("meta_params"):
+            metas = meta_pattern.findall(m.group("meta_params"))
+            ret['meta'] = {k:v for k,v in metas}
+        return ret
+    else:
+        raise ValueError("Invalid jdbc string")
 
-    # fw_ps = {
-    # }
-    # co_ps = {
-    #     "connection.jdbcDriver": "com.microsoft.sqlserver.jdbc.SQLServerDriver",
-    #     "connection.connectionString": "jdbc:sqlserver://zdwechat.cloudapp.net;databaseName=HeroStorev1;user=wechatuser;password=Server2013*?",
-    #     "connection.username": "wechatuser",
-    #     "connection.password": "Server2013*?"        
-    # }
-    # sqoop.create_connection(name="zdwechat message",
-    #                         framework_params=fw_ps,
-    #                         connector_params=co_ps)
-    
+def pymssql_delete_table(cfg, tablename):
+    import pymssql
+    server = cfg['ipv4host']
+    def get_username(cfg):
+        username = cfg.get('username', None)
+        if username:
+            return username
+
+        if 'meta' not in cfg:
+            return None
+
+        return cfg['meta'].get('user', None)
+
+    def get_password(cfg):
+        password = cfg.get('password', None)
+        if password:
+            return password
+
+        if 'meta' not in cfg:
+            return None
+
+        return cfg['meta'].get('password', None)
+
+    user = get_username(cfg)
+    password = get_password(cfg)
+    dbname = cfg['meta']['databaseName']
+    conn = pymssql.connect(server, user, password, dbname, tablename)
+    cursor = conn.cursor()
+    # TODO:
+    cursor.execute("DELETE FROM %s" % tablename)
+    conn.commit()
+
 if __name__ == "__main__":
     main()
