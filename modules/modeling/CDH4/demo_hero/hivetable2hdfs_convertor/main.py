@@ -16,7 +16,7 @@ if __name__ == "__main__":
             user="hive",
             password="",
             database="default")
-    query_sql = "DESCRIBE FORMATTED   %s" % settings.Input.table_name
+    query_sql = "DESCRIBE FORMATTED   %s" % settings.Input.table_name.val
     cur = conn.cursor()
     cur.execute(query_sql)
 
