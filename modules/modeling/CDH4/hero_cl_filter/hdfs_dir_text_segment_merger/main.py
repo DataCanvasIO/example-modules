@@ -15,12 +15,12 @@ def main():
     output_dir =  os.path.join(output_dir,'')
     output_filename = os.path.join(output_dir, "merged_file")
     
-    hadoop_del_dir  = "hadoop fs -rm -r %s " % output_dir
-    print hadoop_del_dir
-    ret = cmd(hadoop_del_dir)
-    if ret !=0:
-        sys.exit(ret)
-    print "prepare(delete output dir successfully)"
+ #   hadoop_del_dir  = "hadoop fs -rm -r %s " % output_dir
+ #   print hadoop_del_dir
+ #   ret = cmd(hadoop_del_dir)
+ #   if ret !=0:
+ #       sys.exit(ret)
+ #   print "prepare(delete output dir successfully)"
 
     hadoop_shell = "hadoop fs -mkdir %s && hadoop fs -cat %s/* | hadoop fs -put - %s" %(output_dir,hdfs_input_dir,output_filename)
     print hadoop_shell
