@@ -1,0 +1,23 @@
+{
+    "Name": "hdfs_dir_text_segment_merger",
+    "Description": "Merge all text segment under give hdfs directory into one file.Then HADOOP PUT the file on new driectory on hdfs",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "input_dir": [
+            "hdfs.directory"
+        ]
+    },
+    "Output": {
+        "output_dir": [
+            "hdfs.directory"
+        ]
+    }
+}
