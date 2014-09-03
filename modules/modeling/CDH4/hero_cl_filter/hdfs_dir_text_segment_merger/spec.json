@@ -16,8 +16,8 @@
         ]
     },
     "Output": {
-        "output_dir": [
-            "hdfs.directory"
+        "output_file": [
+            "hdfs.file"
         ]
     }
 }
