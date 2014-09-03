@@ -61,7 +61,7 @@ prebuild() {
 screwjack_submit() {
     if [[ -f ./.meta.json ]]
     then
-        local ret=$(jq ".templateType" ./.meta.json)
+        local ret=$(cat ./.meta.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["templateType"]')
         templateType=${ret//null/none}
         screwjack --username=$USERNAME --spec_server=$SPEC_SERVER submit --templateType=$templateType
     else
