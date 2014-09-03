@@ -1,0 +1,40 @@
+{
+    "Name": "sentiment_group_count",
+    "Description": "Aggregate sentiment results group by sentiment value.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "$hdfs_root",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "$HiveServer2_Host",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "$HiveServer2_Port",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "avro_path": [
+            "hdfs.avro"
+        ]
+    },
+    "Output": {
+        "group_count_table": [
+            "hive.table"
+        ]
+    }
+}
+
