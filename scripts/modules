@@ -25,3 +25,4 @@ modules/modeling/CDH4/utility/hive_to_csv
 modules/utility/s3_publisher
 modules/data_source/datasource_to_hdfs
 modules/modeling/CDH4/demo_recommendation/recommendation_mahout
+modules/modeling/CDH4/demo_sentiment/sentiment_group_count
