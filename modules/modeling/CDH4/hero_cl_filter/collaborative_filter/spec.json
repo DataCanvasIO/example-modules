@@ -1,0 +1,50 @@
+{
+    "Name": "collaborative_filter",
+    "Description": "A wrapper of mahout collaborative filterinng module",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "$hdfs_root",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "127.0.0.1:8032",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "127.0.0.1:8030",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "yarn_resourcemanager": {
+            "Default": "",
+            "Type": "string"
+        },
+        "yarn_resourcemanager_scheduler": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "ratings": [
+            "hdfs.directory"
+        ],
+        "usersFile": [
+            "hdfs.file"
+        ]
+    },
+    "Output": {
+        "cl_result": [
+            "hdfs.directory"
+        ]
+    }
+}
