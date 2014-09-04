@@ -1,0 +1,39 @@
+{
+    "Name": "cl_result_planner",
+    "Description": "Plan the result from collaborative filtering to plan-text",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "cl_result_table": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "cl_result_plan_table": [
+            "hive.table"
+        ]
+    }
+}
