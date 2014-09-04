@@ -1,0 +1,58 @@
+{
+    "Name": "sqoop2_importer",
+    "Description": "sqoop2 client to post requset of transfering data",
+    "Version": "0.1",
+    "CategoryTags": [
+        "project_match",
+        "CDH4"
+    ],
+    "Cmd": "/usr/bin/python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "$hdfs_root",
+            "Type": "string"
+        },
+        "Sqoop2Server_Host": {
+            "Default": "$Sqoop2Server_Host",
+            "Type": "string"
+        },
+        "Sqoop2Server_Port": {
+            "Default": "$Sqoop2Server_Port",
+            "Type": "string"
+        },
+        "connection_string": {
+            "Default": "$connection_string",
+            "Type": "string"
+        },
+        "connection_username": {
+            "Default": "$connection_username",
+            "Type": "string"
+        },
+        "connection_password": {
+            "Default": "$connection_password",
+            "Type": "string"
+        },
+        "input_columns": {
+            "Default": "",
+            "Type": "string"
+        },
+        "partition_column": {
+            "Default": "",
+            "Type": "string"
+        },
+        "table_name": {
+            "Default": "",
+            "Type": "string"
+        },
+        "where_clause": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {},
+    "Output": {
+        "output_dir": [
+            "hdfs.directory"
+        ]
+    }
+}
