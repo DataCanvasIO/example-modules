@@ -1,0 +1,53 @@
+{
+    "Name": "weight_merge_child_recommendations",
+    "Description": "merge cosine match result,hunter collaborative filtering result and applicant collaborative filting result together weighted",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "cosine_match_weight": {
+            "Default": "0.5",
+            "Type": "string"
+        },
+        "cl_match_weight": {
+            "Default": "0.5",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "hunter_cl_result_table": [
+            "hive.table"
+        ],
+        "applicant_cl_result_table": [
+            "hive.table"
+        ],
+        "cosine_match_result_table": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "result_table": [
+            "hive.table"
+        ]
+    }
+}
