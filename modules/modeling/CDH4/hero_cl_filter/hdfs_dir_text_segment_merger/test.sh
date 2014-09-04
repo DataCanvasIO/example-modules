@@ -1,7 +1,8 @@
 touch ./input.txt
-echo "hdfs://10.10.0.114/tmp/hive-jiaqi/dir_merger_input/" > ./input.txt
+touch ./output.txt
+echo "hdfs://10.10.0.114/tmp/zetjob/jiaqi/job123/blk456/user1"> input.txt
 
 screwjack run docker \
   --param-hdfs_root hdfs://10.10.0.114 \
   --input_dir ./input.txt \
-  --output_dir ./output.txt
+  --output_file ./output.txt

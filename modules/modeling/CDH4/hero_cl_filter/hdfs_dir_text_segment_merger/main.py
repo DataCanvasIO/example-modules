@@ -18,11 +18,9 @@ def main():
     hadoop_del_dir  = "hadoop fs -rm -r %s " % output_dir
     print hadoop_del_dir
     ret = cmd(hadoop_del_dir)
-    if ret !=0:
-        sys.exit(ret)
     print "prepare(delete output dir successfully)"
 
-    hadoop_shell = "hadoop fs -mkdir %s && hadoop fs -cat %s/* | hadoop fs -put - %s" %(output_dir,hdfs_input_dir,output_filename)
+    hadoop_shell = "hadoop fs -mkdir %s && hadoop fs -text %s/* | hadoop fs -put - %s" %(output_dir,hdfs_input_dir,output_filename)
     print hadoop_shell
     ret = cmd(hadoop_shell)
     if ret !=0:
