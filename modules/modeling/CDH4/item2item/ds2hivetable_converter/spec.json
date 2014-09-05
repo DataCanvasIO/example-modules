@@ -1,5 +1,5 @@
 {
-    "Name": "hdfs2hivetable_convertor",
+    "Name": "ds2hivetable_converter",
     "Description": "Map a hdfs directiry to a table in hive.",
     "Version": "0.1",
     "CategoryTags": [],
