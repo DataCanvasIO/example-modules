@@ -40,7 +40,6 @@ modules/modeling/CDH4/demo_hero/hivetable2hdfs_convertor
 modules/modeling/CDH4/demo_hero/hdfs2hivetable_convertor
 modules/modeling/CDH4/demo_hero/sqoop2_exporter
 modules/modeling/CDH4/demo_hero/sqoop2_importer
-modules/modeling/CDH4/demo_hero/word_segment_in_hive
 modules/modeling/CDH4/hero_cl_filter/weight_merge_child_recommendations
 modules/modeling/CDH4/hero_cl_filter/collaborative_filter
 modules/modeling/CDH4/hero_cl_filter/hdfs_dir_text_segment_merger
