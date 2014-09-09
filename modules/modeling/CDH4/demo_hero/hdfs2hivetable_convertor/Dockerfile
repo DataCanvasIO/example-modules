@@ -3,7 +3,7 @@
 # VERSION : 0.1
 
 FROM zetdata/cdh:4
-# MAINTAINER Your_name, Your_email_address
+MAINTAINER Guo Jiaqi, guojq@zetyun.com
 
 RUN apt-get install -y hive
 
