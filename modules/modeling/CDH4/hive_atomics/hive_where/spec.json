@@ -1,0 +1,43 @@
+{
+    "Name": "hive_where",
+    "Description": "This module perform the WHERE function against the condition specified by Parameter on target table",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "where": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "from_table": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "filtered_table": [
+            "hive.table"
+        ]
+    }
+}
