@@ -20,4 +20,4 @@ LEFT OUTER JOIN
 ON result.aid = history.auserid 
 AND result.bid = history.buserid 
 AND result.a_type= history.atype
-WHERE history.buserid is null ;
+WHERE history.buserid is null and result.aid != result.bid;
