@@ -1,0 +1,43 @@
+{
+    "Name": "hive_select",
+    "Description": "This module perform the query SELECT columns specified by Parameter on target table.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "$hdfs_root",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "$HiveServer2_Host",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "$HiveServer2_Port",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "columns": {
+            "Default": "*",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "from_table": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "selected_table": [
+            "hive.table"
+        ]
+    }
+}
