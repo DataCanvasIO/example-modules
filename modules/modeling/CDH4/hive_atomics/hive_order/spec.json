@@ -1,0 +1,47 @@
+{
+    "Name": "hive_order",
+    "Description": "This module perform the ORDER BY function on columns specified by Parameter on target table.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "order_by_columns": {
+            "Default": "",
+            "Type": "string"
+        },
+        "limit": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "from_table": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "ordered_table": [
+            "hive.table"
+        ]
+    }
+}
