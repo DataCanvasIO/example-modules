@@ -1,0 +1,50 @@
+{
+    "Name": "hive_join",
+    "Description": "This module perform the JOIN query by the condition specified by Parameter on target table",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Host": {
+            "Default": "",
+            "Type": "string"
+        },
+        "HiveServer2_Port": {
+            "Default": "",
+            "Type": "string"
+        },
+        "FILE_DIR": {
+            "Default": "./resources/files",
+            "Type": "string"
+        },
+        "UDF_DIR": {
+            "Default": "./resources/udfs",
+            "Type": "string"
+        },
+        "join_type": {
+            "Default": "",
+            "Type": "string"
+        },
+        "on_condition": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "table_a": [
+            "hive.table"
+        ],
+        "table_b": [
+            "hive.table"
+        ]
+    },
+    "Output": {
+        "joined_table": [
+            "hive.table"
+        ]
+    }
+}
