@@ -1,5 +1,8 @@
 
-CREATE TEMPORARY FUNCTION segment AS 'com.zetyun.hive.udf.WordSegment';
+--CCREATE TEMPORARY FUNCTION segment AS 'com.zetyun.hive.udf.WordSegment';
+ADD FILE ${PARAM_ext_dic_dir}/ext.dic;
+
+CREATE TEMPORARY FUNCTION segment AS 'com.zetdata.hive.hero.udf.WordSegment';
 
 --------------------------------------
 --Extract the tokens
