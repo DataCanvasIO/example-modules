@@ -24,7 +24,7 @@ login_spec_server
 
 WORKING_ROOT_DIR=`pwd`
 
-MODULE_LIST_FILE=${MODULE_LIST_FILE:-$SCRIPT_DIR/modules}
+MODULE_LIST_FILE=${MODULE_LIST_FILE:-$SCRIPT_DIR/modules.rebuild}
 echo "Loading module file : '$MODULE_LIST_FILE'"
 modules=$(cat $MODULE_LIST_FILE)
 
