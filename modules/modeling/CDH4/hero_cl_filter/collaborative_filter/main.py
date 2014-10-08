@@ -12,6 +12,11 @@ def cmd(cmd_str):
     ret = subprocess.call(cmd_str, shell=True)
     return ret
 
+def get_the_line_of_transaction(path):
+    abs_path = os.path.join(path,'*')
+    cmd_str = "hadoop fs -text %s | wc -l " % abs_path
+    return cmd(cmd_str)
+
 def main():
     hr = HadoopRuntime("spec.json")
     settings = hr.settings
@@ -45,16 +50,20 @@ def main():
     other_args["output"] = output_path
     other_args["tempDir"] = temp_path
     other_args_str = " ".join(["--%s %s" % (k,v) for k,v in other_args.items()])
-
-    cmd_str = '%s hadoop jar %s org.apache.mahout.cf.taste.hadoop.item.RecommenderJob %s %s' % \
-            (hadoop_params_str, jar_file, jar_defs_str, other_args_str)
-    print("Executing:")
-    print(cmd_str)
-    ret = cmd(cmd_str)
-    if ret != 0:
-        print("Job failed")
-        sys.exit(ret)
-
+    
+    line_num =get_the_line_of_transaction(settings.Input.ratings.val)
+    
+    if line_num >0: 
+        cmd_str = '%s hadoop jar %s org.apache.mahout.cf.taste.hadoop.item.RecommenderJob %s %s' % \
+                (hadoop_params_str, jar_file, jar_defs_str, other_args_str)
+        print("Executing:")
+        print(cmd_str)
+        ret = cmd(cmd_str)
+        if ret != 0:
+            print("Job failed")
+            sys.exit(ret)
+    else:
+        print "Collaborative Input Transaction Matrix is empty. Skip the calcuating."   
     settings.Output.cl_result.val = output_path
 
     print("Done")
