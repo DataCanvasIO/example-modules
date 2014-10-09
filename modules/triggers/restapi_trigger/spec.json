@@ -1,0 +1,23 @@
+{
+    "Name": "restapi_trigger",
+    "Description": "restapi trigger",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "uri": {
+            "Default": "",
+            "Type": "string"
+        },
+        "method": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "button": [
+            "any"
+        ]
+    },
+    "Output": {}
+}
