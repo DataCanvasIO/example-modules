@@ -11,8 +11,8 @@ def handler(uri,method):
     else:
         print "Except \'GET\' and \'POST\' method, others are not supported currently"
         return
-    print r.headers
-    print r.text
+    print str(r.headers).encode("utf-8")
+    print r.text.encode("utf-8")
     
 
 def main():
