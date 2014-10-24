@@ -1,0 +1,30 @@
+{
+    "Name": "hero_cos_matc_spark",
+    "Description": "Hero project cosine match part on spark",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "",
+            "Type": "string"
+        },
+        "spark_host": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "rs_dir": [
+            "string"
+        ],
+        "jd_dir": [
+            "string"
+        ]
+    },
+    "Output": {
+        "match_result": [
+            "string"
+        ]
+    }
+}
