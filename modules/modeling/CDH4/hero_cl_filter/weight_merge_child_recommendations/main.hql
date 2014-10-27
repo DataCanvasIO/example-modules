@@ -9,7 +9,7 @@ INSERT OVERWRITE TABLE ${OUTPUT_result_table}
 SELECT coalesce(cosine_match.aid,cl_match.aid) AS aid,
        coalesce(cosine_match.bid,cl_match.bid) AS bid,
        coalesce(cosine_match.score,0.0) + coalesce(cl_match.score,0.0) AS score,
-       coalesce(cosine_match.a_type,cl_match.a_type) AS a_type,
+       coalesce(cosine_match.a_type,cl_match.a_type) AS a_type
 FROM
 (
     SELECT aid,bid,${PARAM_cosine_match_weight}*score AS score,a_type 
