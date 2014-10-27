@@ -2,14 +2,14 @@
 -- TODO : Fill your code here
 
 DROP TABLE IF EXISTS ${OUTPUT_filtered_table};
-CREATE TABLE ${OUTPUT_filtered_table} (id STRING, aid STRING,bid STRING,score DOUBLE,a_type TINYINT,pushIND INT,timestp BIGINT)
+CREATE TABLE ${OUTPUT_filtered_table} (id STRING, aid STRING,bid STRING,score DOUBLE,a_type TINYINT)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
 
 INSERT OVERWRITE TABLE ${OUTPUT_filtered_table}
-SELECT "null",result.aid,result.bid,score,result.a_type,pushIND,timestp
+SELECT result.aid,result.bid,score,result.a_type
 FROM
 (
-    SELECT aid,bid,score,a_type,timestp,pushIND 
+    SELECT aid,bid,score,a_type 
     FROM ${INPUT_result_table}
 )result
 LEFT OUTER JOIN
