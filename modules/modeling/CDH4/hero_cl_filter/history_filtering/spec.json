@@ -1,7 +1,7 @@
 {
     "Name": "history_filtering",
     "Description": "Filter out the message what have been sent to users",
-    "Version": "0.1",
+    "Version": "0.2",
     "CategoryTags": [],
     "Cmd": "python main.py",
     "Param": {

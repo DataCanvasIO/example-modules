@@ -2,11 +2,11 @@
 -- TODO : Fill your code here
 
 DROP TABLE IF EXISTS ${OUTPUT_filtered_table};
-CREATE TABLE ${OUTPUT_filtered_table} (aid STRING,bid STRING,score DOUBLE,a_type TINYINT,timestp BIGINT,pushIND INT)
+CREATE TABLE ${OUTPUT_filtered_table} (id STRING, aid STRING,bid STRING,score DOUBLE,a_type TINYINT,pushIND INT,timestp BIGINT)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
 
 INSERT OVERWRITE TABLE ${OUTPUT_filtered_table}
-SELECT result.aid,result.bid,score,result.a_type,timestp,pushIND
+SELECT "null",result.aid,result.bid,score,result.a_type,pushIND,timestp
 FROM
 (
     SELECT aid,bid,score,a_type,timestp,pushIND 

@@ -129,7 +129,8 @@ class MySqoop(object):
         jdbc_cfg = parse_jdbc(conn_str)
 
         jdbc_driver_dict = {
-                "sqlserver" : "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                "sqlserver" : "com.microsoft.sqlserver.jdbc.SQLServerDriver",
+                "postgresql" : "org.postgresql.Driver"
         }
         if not jdbc_cfg['name'] in jdbc_driver_dict:
             raise ValueError("Do not support jdbc driver '%s'" % jdbc_cfg['name'])

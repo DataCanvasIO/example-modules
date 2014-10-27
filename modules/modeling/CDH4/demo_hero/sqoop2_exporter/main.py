@@ -25,7 +25,7 @@ def main():
     cfg = parse_jdbc(conn_str)
     cfg["username"] = settings.Param.connection_username
     cfg["password"] = settings.Param.connection_password
-    pymssql_delete_table(cfg, settings.Param.table_name)
+    #pymssql_delete_table(cfg, settings.Param.table_name)
 
     # 3. Run sqoop export job
     print "Running Sqoop2 Job to Export"
@@ -50,7 +50,7 @@ def main():
     sqoop.delete_job(r['id'])
 
     # Finally, Delete connection we created
-    sqoop.delete_connection_by_id(conn_ret["id"])
+    #sqoop.delete_connection_by_id(conn_ret["id"])
 
     print("Done")
 

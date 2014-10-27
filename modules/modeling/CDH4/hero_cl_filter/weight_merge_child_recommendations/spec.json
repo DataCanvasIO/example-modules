@@ -1,7 +1,7 @@
 {
     "Name": "weight_merge_child_recommendations",
     "Description": "merge cosine match result,hunter collaborative filtering result and applicant collaborative filting result together weighted",
-    "Version": "0.1",
+    "Version": "0.2",
     "CategoryTags": [],
     "Cmd": "python main.py",
     "Param": {

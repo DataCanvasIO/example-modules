@@ -1,7 +1,7 @@
 {
     "Name": "sqoop2_exporter",
     "Description": "Create sqoop2 job to export data from hdfs path.",
-    "Version": "0.1",
+    "Version": "0.3",
     "CategoryTags": [
         "project_match",
         "CDH4"

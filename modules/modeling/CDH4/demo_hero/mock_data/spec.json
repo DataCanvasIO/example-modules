@@ -1,0 +1,23 @@
+{
+    "Name": "mock_data",
+    "Description": "mock data fo rtest",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "hdfs_root": {
+            "Default": "$hdfs_root",
+            "Type": "string"
+        },
+        "data_path": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {},
+    "Output": {
+        "hdfs_path": [
+            "hdfs.directory"
+        ]
+    }
+}
