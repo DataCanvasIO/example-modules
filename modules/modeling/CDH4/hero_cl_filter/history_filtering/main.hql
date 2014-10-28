@@ -2,7 +2,7 @@
 -- TODO : Fill your code here
 
 DROP TABLE IF EXISTS ${OUTPUT_filtered_table};
-CREATE TABLE ${OUTPUT_filtered_table} (id STRING, aid STRING,bid STRING,score DOUBLE,a_type TINYINT)
+CREATE TABLE ${OUTPUT_filtered_table} (aid STRING,bid STRING,score DOUBLE,a_type TINYINT)
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
 
 INSERT OVERWRITE TABLE ${OUTPUT_filtered_table}

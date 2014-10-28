@@ -31,9 +31,10 @@ def main():
     print "Running Sqoop2 Job to Export"
     fw_ps = {
         "input.inputDirectory": settings.Input.hdfs_path.val
-    }
+   }
     job_ps = {
-        "table.tableName": settings.Param.table_name
+        "table.tableName": settings.Param.table_name,
+        "table.columns": settings.Param.table_columns
     }
     job_name = "export job :: username(%s) job %s, block %s" % (
             settings.GlobalParam["userName"],
