@@ -52,7 +52,8 @@ def main():
 
     # Finally, Delete connection we created
     #sqoop.delete_connection_by_id(conn_ret["id"])
-
+    
+    settings.Output.signal.val="ready"
     print("Done")
 
 if __name__ == "__main__":
