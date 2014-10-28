@@ -302,12 +302,51 @@ def pymssql_delete_table(cfg, tablename):
 
     user = get_username(cfg)
     password = get_password(cfg)
-    dbname = cfg['meta']['databaseName']
+    dbname = cfg['meta']['databaseName']   
     conn = pymssql.connect(server, user, password, dbname, tablename)
     cursor = conn.cursor()
     # TODO:
     cursor.execute("DELETE FROM %s" % tablename)
     conn.commit()
+
+def psycopg2_delete_table(cfg,tablename):
+    import psycopg2
+    def get_prostegres_connection(servername,username,password_string,dbname):
+        conn = psycopg2.connect("dbname='%s' user='%s' host='%s' password='%s'" %(dbname,username,servername,password_string ) )
+        return conn
+
+    def delete_data_table(post_conn,table_name):
+        pos_cursor =  pos_conn.cursor()
+        pos_cursor.execute("delete from %s where 1=1" % table_name)
+        pos_conn.commit()
+
+    def get_username(cfg):
+        username = cfg.get('username', None)
+        if username:
+            return username
+
+        if 'meta' not in cfg:
+            return None
+
+        return cfg['meta'].get('user', None)
+
+    def get_password(cfg):
+        password = cfg.get('password', None)
+        if password:
+            return password
+
+        if 'meta' not in cfg:
+            return None
+
+        return cfg['meta'].get('password', None)
+
+    server = cfg['ipv4host']
+    user = get_username(cfg)
+    password = get_password(cfg)
+    dbname = cfg['database']   
+    pos_conn = get_prostegres_connection(server,user,password,dbname)
+
+    delete_data_table(pos_conn,tablename)
 
 if __name__ == "__main__":
     main()

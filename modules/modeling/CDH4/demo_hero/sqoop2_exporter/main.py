@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from specparser import get_settings_from_file
-from pysqoop2 import MySqoop, pp, parse_jdbc, pymssql_delete_table
+from pysqoop2 import MySqoop, pp, parse_jdbc, pymssql_delete_table,psycopg2_delete_table
 
 def main():
     settings = get_settings_from_file("spec.json")
@@ -25,7 +25,14 @@ def main():
     cfg = parse_jdbc(conn_str)
     cfg["username"] = settings.Param.connection_username
     cfg["password"] = settings.Param.connection_password
-    #pymssql_delete_table(cfg, settings.Param.table_name)
+    
+    print cfg
+    if "postgresql" in cfg["name"]:
+        psycopg2_delete_table(cfg,settings.Param.table_name)
+        print "delete table %s in POSTGRES" % settings.Param.table_name
+    if "sqlserver" in cfg["name"]:
+        pymssql_delete_table(cfg, settings.Param.table_name)
+        print "delete table %s in MS SQL" % settings.Param.table_name
 
     # 3. Run sqoop export job
     print "Running Sqoop2 Job to Export"
