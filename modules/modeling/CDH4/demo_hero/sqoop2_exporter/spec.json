@@ -1,11 +1,11 @@
 {
     "Name": "sqoop2_exporter",
     "Description": "Create sqoop2 job to export data from hdfs path.",
-    "Version": "0.3",
+    "Version": "0.5",
     "CategoryTags": [
         "project_match",
         "CDH4"
-     ],
+    ],
     "Cmd": "python main.py",
     "Param": {
         "Sqoop2Server_Host": {
@@ -31,6 +31,10 @@
         "table_name": {
             "Default": "",
             "Type": "string"
+        },
+        "table_columns": {
+            "Default": "",
+            "Type": "string"
         }
     },
     "Input": {
@@ -38,5 +42,9 @@
             "hdfs.directory"
         ]
     },
-    "Output": {}
+    "Output": {
+        "signal": [
+            "any"
+        ]
+    }
 }

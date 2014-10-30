@@ -58,7 +58,7 @@ def main():
     sqoop.delete_job(r['id'])
 
     # Finally, Delete connection we created
-    #sqoop.delete_connection_by_id(conn_ret["id"])
+    sqoop.delete_connection_by_id(conn_ret["id"])
     
     settings.Output.signal.val="ready"
     print("Done")
