@@ -1,7 +1,7 @@
 {
     "Name": "hero_cos_matc_spark",
     "Description": "Hero project cosine match part on spark",
-    "Version": "0.3",
+    "Version": "0.1",
     "CategoryTags": [
         "Spark"
     ],
@@ -22,10 +22,16 @@
         ],
         "jd_dir": [
             "hdfs.directory"
+        ],
+        "white_dict": [
+            "hdfs.directory"
         ]
     },
     "Output": {
         "match_result": [
+            "hdfs.directory"
+        ],
+        "match_analysis": [
             "hdfs.directory"
         ]
     }
