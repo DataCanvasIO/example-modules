@@ -12,6 +12,10 @@ if [ "$#" -ne 3 ]; then
     exit
 fi
 
+echo "WARNING: unset http_proxy/HTTP_PROXY for local submitting"
+unset http_proxy
+unset HTTP_PROXY
+
 . $SCRIPT_DIR/functions.sh
 
 #######
