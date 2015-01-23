@@ -1,0 +1,13 @@
+{
+    "Name":"test postgres",
+    "URL":null,
+    "Meta":{
+        "type":"Oracle",
+        "host":"registry.datacanvas.io",
+        "port":"xxx",
+        "user":"xxx",
+        "database":"xxx",
+        "password":"xxx"
+    },
+    "Type":"DB"
+}

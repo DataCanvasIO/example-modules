@@ -1,0 +1,9 @@
+{
+    "Name":"test postgres",
+    "URL":null,
+    "Meta":{
+        "type":"SQLite",
+        "path": "http://xiaolin.cloudapp.net/~xiaolin/chinook.sqlite"
+    },
+    "Type":"DB"
+}

@@ -1,0 +1,13 @@
+{
+    "Name":"test mysql",
+    "URL":null,
+    "Meta":{
+        "type":"MySQL",
+        "host":"registry.datacanvas.io",
+        "port":"3306",
+        "user":"xiaolin_ro",
+        "database":"employees",
+        "password":"XiaolinAtZetyun"
+    },
+    "Type":"DB"
+}

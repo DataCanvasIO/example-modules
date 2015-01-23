@@ -1,0 +1,13 @@
+{
+    "Name":"test postgres",
+    "URL":null,
+    "Meta":{
+        "type":"PostgreSQL",
+        "host":"registry.datacanvas.io",
+        "port":"5432",
+        "user":"xiaolin",
+        "database":"booktown",
+        "password":"XiaolinAtZetyun"
+    },
+    "Type":"DB"
+}

@@ -1,0 +1,23 @@
+{
+    "Name": "db_csv_dumper",
+    "Description": "db dumper",
+    "Version": "0.1",
+    "CategoryTags": ["ETL"],
+    "Cmd": "python main.py",
+    "Param": {
+        "query": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "DB": [
+            "datasource"
+        ]
+    },
+    "Output": {
+        "O": [
+            "csv"
+        ]
+    }
+}
