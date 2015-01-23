@@ -1,6 +1,6 @@
 {
     "Name": "db_csv_dumper",
-    "Description": "db dumper",
+    "Description": "Dump DB type of datasource to a csv file.",
     "Version": "0.1",
     "CategoryTags": ["ETL"],
     "Cmd": "python main.py",
