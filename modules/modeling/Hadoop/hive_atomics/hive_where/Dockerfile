@@ -1,11 +1,10 @@
-# hive_select
+# hive_where
 
 # VERSION : 0.1
 
 FROM zetdata/cdh:new
 # MAINTAINER Your_name, Your_email_address
 
-#RUN apt-get install -y hive
 
 ADD requirements.txt /home/run/
 RUN pip install -r /home/run/requirements.txt

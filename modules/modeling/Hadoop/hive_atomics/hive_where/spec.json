@@ -1,0 +1,33 @@
+{
+    "Name": "hive_where",
+    "Description": "This module perform the WHERE function against the condition specified by Parameter on target table",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "cluster": {
+            "Default": "hdp_sandbox",
+            "Type": "cluster"
+        },
+        "where": {
+            "Default": "",
+            "Type": "string"
+        },
+        "select_columns": {
+            "Default": "*",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "from_table": [
+            "datasource.hive",
+            "datasource"
+        ]
+    },
+    "Output": {
+        "filtered_table": [
+            "datasource.hive",
+            "datasource"
+        ]
+    }
+}

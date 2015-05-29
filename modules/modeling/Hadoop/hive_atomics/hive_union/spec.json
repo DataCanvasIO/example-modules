@@ -1,0 +1,29 @@
+{
+    "Name": "hive_union",
+    "Description": "This module perform the UNION function on target tables.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "cluster": {
+            "Default": "hdp_sandbox",
+            "Type": "cluster"
+        }
+    },
+    "Input": {
+        "table_a": [
+            "datasource.hive",
+	    "datasource"
+        ],
+        "table_b": [
+            "datasource.hive",
+	    "datasource"
+        ]
+    },
+    "Output": {
+        "union_table": [
+            "datasource.hive",
+	    "datasource"
+        ]
+    }
+}

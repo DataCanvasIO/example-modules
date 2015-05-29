@@ -1,0 +1,41 @@
+{
+    "Name": "hive_join",
+    "Description": "This module perform the JOIN query by the condition specified by Parameter on target table.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "cluster": {
+            "Default": "hdp_sandbox",
+            "Type": "cluster"
+        },
+        "join_type": {
+            "Default": "",
+            "Type": "string"
+        },
+        "on_condition": {
+            "Default": "",
+            "Type": "string"
+        },
+        "selected_columns": {
+            "Default": "a.*, b.*",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "table_a": [
+            "datasource.hive",
+            "datasource"
+        ],
+        "table_b": [
+            "datasource.hive",
+            "datasource"
+        ]
+    },
+    "Output": {
+        "joined_table": [
+            "datasource.hive",
+            "datasource"
+        ]
+    }
+}

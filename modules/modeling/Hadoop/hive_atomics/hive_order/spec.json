@@ -1,0 +1,33 @@
+{
+    "Name": "hive_order",
+    "Description": "This module perform the ORDER BY function on columns specified by Parameter on target table.",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "cluster": {
+            "Default": "hdp_sandbox",
+            "Type": "cluster"
+        },
+        "order_by_columns": {
+            "Default": "",
+            "Type": "string"
+        },
+        "limit": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "from_table": [
+            "datasource.hive",
+	    "datasource"
+        ]
+    },
+    "Output": {
+        "ordered_table": [
+            "datasource.hive",
+	    "datasource"
+        ]
+    }
+}
