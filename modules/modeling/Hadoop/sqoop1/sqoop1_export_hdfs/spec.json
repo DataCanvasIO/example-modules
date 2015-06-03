@@ -1,0 +1,39 @@
+{
+    "Name": "sqoop1_export_hdfs",
+    "Description": "Sqoop1 export from hdfs",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "cluster": {
+            "Default": "",
+            "Type": "cluster"
+        },
+        "connect_string": {
+            "Default": "",
+            "Type": "string"
+        },
+        "username": {
+            "Default": "",
+            "Type": "string"
+        },
+        "password": {
+            "Default": "",
+            "Type": "string"
+        },
+        "table": {
+            "Default": "",
+            "Type": "string"
+        },
+        "additional_params": {
+            "Default": "",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "I": [
+            "datasource.hdfs"
+        ]
+    },
+    "Output": {}
+}

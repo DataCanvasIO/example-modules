@@ -1,0 +1,43 @@
+{
+    "Name": "sqoop1_import_hdfs",
+    "Description": "Sqoop1 import to hdfs",
+    "Version": "0.1",
+    "CategoryTags": [],
+    "Cmd": "python main.py",
+    "Param": {
+        "cluster": {
+            "Default": "",
+            "Type": "cluster"
+        },
+        "connect_string": {
+            "Default": "",
+            "Type": "string"
+        },
+        "username": {
+            "Default": "",
+            "Type": "string"
+        },
+        "password": {
+            "Default": "",
+            "Type": "string"
+        },
+        "table": {
+            "Default": "",
+            "Type": "string"
+        },
+        "target_dir": {
+            "Default": "",
+            "Type": "string"
+        },
+        "additional_params": {
+            "Default": "-m 10 --delete-target-dir --compression-codec=snappy --as-avrodatafile",
+            "Type": "string"
+        }
+    },
+    "Input": {},
+    "Output": {
+        "O": [
+            "datasource.hdfs"
+        ]
+    }
+}
