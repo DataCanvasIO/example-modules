@@ -12,6 +12,9 @@ dc = DataCanvas(__name__)
 @dc.hadoop_runtime(spec_json="spec.json")
 def mymodule(rt, params, inputs, outputs):
 
+    if rt.hadoop_type not in ["CDH4", "CDH5"]:
+        raise Exception("Do not support cluster type '%s'" % rt.cluster_type)
+    
     # Check params
     if not params.connect_string.val.strip():
         raise ValueError("Param 'connect_string' should not be empty")
