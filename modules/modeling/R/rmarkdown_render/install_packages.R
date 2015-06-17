@@ -1,0 +1,12 @@
+
+# install.packages("forecast", repo="http://cran.r-project.org")
+install.packages("RDataCanvas", repo="http://cran.r-project.org")
+install.packages("ggplot2", repo="http://cran.r-project.org")
+install.packages("caret", repo="http://cran.r-project.org")
+install.packages("gplots", repo="http://cran.r-project.org")
+install.packages("rpart", repo="http://cran.r-project.org")
+install.packages("knitr", repo="http://cran.r-project.org")
+install.packages("plyr", repo="http://cran.r-project.org")
+install.packages("dplyr", repo="http://cran.r-project.org")
+install.packages("ROCR", repo="http://cran.r-project.org")
+install.packages("rmarkdown", repo="http://cran.r-project.org")

@@ -1,0 +1,228 @@
+---
+title: "R_in_Bank"
+author: "Xiaolin Zhang"
+date: "June 10, 2015"
+output: html_document
+params:
+   csv_file: ""
+   csv_header: TRUE
+   csv_sep: ","
+---
+
+```{r}
+R.version
+```
+
+```{r, echo=FALSE}
+library(knitr)
+library(xtable)
+
+library(ggplot2)
+library(plyr)
+library(dplyr)
+```
+
+This is a example report in R Markdown format. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+
+# Overview of dataset
+
+The data is related with direct marketing campaigns of a Portuguese banking institution. The marketing campaigns were based on phone calls. Often, more than one contact to the same client was required, in order to access if the product (bank term deposit) would be ('yes') or not ('no') subscribed. The dataset was downloaded from <https://archive.ics.uci.edu/ml/datasets/Bank+Marketing>.
+
+```{r}
+bank <- read.csv(params$csv_file, sep = params$csv_sep, header = params$csv_header)
+glimpse(bank)
+```
+
+Some example from this dataset:
+
+```{r kable}
+kable(head(bank))
+```
+
+```
+Attribute Information:
+
+Input variables:
+# bank client data:
+1 - age (numeric)
+2 - job : type of job (categorical: 'admin.','blue-collar','entrepreneur','housemaid','management','retired','self-employed','services','student','technician','unemployed','unknown')
+3 - marital : marital status (categorical: 'divorced','married','single','unknown'; note: 'divorced' means divorced or widowed)
+4 - education (categorical: 'basic.4y','basic.6y','basic.9y','high.school','illiterate','professional.course','university.degree','unknown')
+5 - default: has credit in default? (categorical: 'no','yes','unknown')
+6 - housing: has housing loan? (categorical: 'no','yes','unknown')
+7 - loan: has personal loan? (categorical: 'no','yes','unknown')
+# related with the last contact of the current campaign:
+8 - contact: contact communication type (categorical: 'cellular','telephone') 
+9 - month: last contact month of year (categorical: 'jan', 'feb', 'mar', ..., 'nov', 'dec')
+10 - day_of_week: last contact day of the week (categorical: 'mon','tue','wed','thu','fri')
+11 - duration: last contact duration, in seconds (numeric). Important note: this attribute highly affects the output target (e.g., if duration=0 then y='no'). Yet, the duration is not known before a call is performed. Also, after the end of the call y is obviously known. Thus, this input should only be included for benchmark purposes and should be discarded if the intention is to have a realistic predictive model.
+# other attributes:
+12 - campaign: number of contacts performed during this campaign and for this client (numeric, includes last contact)
+13 - pdays: number of days that passed by after the client was last contacted from a previous campaign (numeric; 999 means client was not previously contacted)
+14 - previous: number of contacts performed before this campaign and for this client (numeric)
+15 - poutcome: outcome of the previous marketing campaign (categorical: 'failure','nonexistent','success')
+# social and economic context attributes
+16 - emp.var.rate: employment variation rate - quarterly indicator (numeric)
+17 - cons.price.idx: consumer price index - monthly indicator (numeric) 
+18 - cons.conf.idx: consumer confidence index - monthly indicator (numeric) 
+19 - euribor3m: euribor 3 month rate - daily indicator (numeric)
+20 - nr.employed: number of employees - quarterly indicator (numeric)
+
+Output variable (desired target):
+21 - y - has the client subscribed a term deposit? (binary: 'yes','no')
+```
+
+# Decision Tree Model for modeling and variable selecting
+
+```{r}
+require(rpart)
+require(caret)
+require(ggplot2)
+require(gplots)
+bank.tree <- rpart(y ~ ., data = bank, method = "class", cp = 0.001)
+treeImp <- varImp(bank.tree, scale = TRUE, surrogates = FALSE, competes = TRUE)
+treeImp$Variable <- rownames(treeImp)
+treeImp.sort <- treeImp[order(-treeImp$Overall), ]
+ggplot(treeImp, aes(Variable, Overall)) + geom_bar(stat = "identity") + coord_flip()
+```
+
+Plot a Complexity Parameter Table for an Rpart Fit
+
+```{r}
+plotcp(bank.tree)
+```
+
+```{r}
+printcp(bank.tree)
+```
+
+```{r}
+bank.tree <- rpart(y ~ ., data = bank, method = "class", cp = 0.0022373)
+plot(bank.tree, branch = 0, margin = 0.1, uniform = T)
+text(bank.tree, use.n = T, col = "red", cex = 0.6)
+```
+
+## Analysis of variables
+
+### 1. duration
+
+```{r}
+bank$y_dummy = ifelse(bank$y == "yes", 1, 0)
+summary(bank$duration)
+```
+
+```{r}
+ggplot(bank, aes(duration, y_dummy)) + geom_smooth() + geom_point()
+```
+
+### 2. month
+
+```{r}
+bank$duration.sq <- bank$duration * bank$duration
+summary(bank$month)
+```
+
+```{r}
+# plotMeans(bank$y_dummy, bank$month, error.bars = "se")
+```
+
+```{r}
+bank$month.sel <- ifelse(bank$month == "dec", 1, 0)
+bank$month.sel <- ifelse(bank$month == "mar", 1, bank$month)
+bank$month.sel <- ifelse(bank$month == "oct", 1, bank$month)
+bank$month.sel <- ifelse(bank$month == "sep", 1, bank$month)
+```
+
+
+### 3. poutcome
+
+```{r}
+summary(bank$poutcome)
+```
+
+```{r}
+# plotMeans(bank$y_dummy, bank$poutcome, error.bars = "se")
+```
+
+```{r}
+bank$poutcome.success <- ifelse(bank$poutcome == "success", 1, 0)
+```
+
+
+### 4. pdays
+
+```{r}
+summary(bank$pdays)
+```
+
+```{r}
+bank$nocontact <- ifelse(bank$pdays == -1, 1, 0)
+bank$pdays <- ifelse(bank$pdays == -1, 0, bank$pdays)
+summary(bank$nocontact)
+```
+
+```{r}
+# plotMeans(bank$y_dummy, as.factor(bank$nocontact), error.bars = "se")
+```
+
+```{r}
+ggplot(bank, aes(log(pdays + 1))) + geom_histogram()
+```
+
+```{r}
+ggplot(bank, aes(log(pdays + 1), y_dummy)) + geom_smooth() + geom_point()
+```
+
+### 5. previous
+
+```{r}
+summary(bank$previous)
+```
+
+```{r}
+ggplot(bank, aes(log(previous + 1))) + geom_histogram()
+```
+
+```{r}
+ggplot(bank, aes(log(previous + 1), y_dummy)) + geom_smooth() + geom_point()
+```
+
+```{r}
+bank$previous.0 <- as.factor(ifelse(bank$previous == 0, 1, 0))
+bank$previous.1 <- as.factor(ifelse(bank$previous == 1, 1, 0))
+bank$previous.2 <- as.factor(ifelse(bank$previous == 2, 1, 0))
+bank$previous.2plus <- as.factor(ifelse(bank$previous > 2, 1, 0))
+```
+
+# Logistic Regression
+
+```{r}
+logistic.full <- glm(y_dummy ~ duration + duration.sq + month.sel + poutcome.success + 
+    bank$nocontact + log(pdays + 1) + bank$previous.0 + bank$previous.1 + bank$previous.2 + 
+    bank$previous.2plus, data = bank)
+summary(logistic.full)
+```
+
+```{r}
+logistic.step <- step(logistic.full, direction = "both", k = 2)
+summary(logistic.step)
+```
+
+# Scoring and ROC
+
+```{r echo=FALSE}
+require(ROCR)
+```
+
+```{r}
+bank.pred<-1/(1+exp(-predict(logistic.step)))
+roc.data <- prediction(bank.pred, labels = bank$y)
+roc.data <- performance(roc.data, "tpr", "fpr")
+plot(roc.data)
+```
+
+```{r}
+score<-data.frame("prob.y"=bank.pred,"y"=as.factor(bank$y_dummy))
+ggplot(score, aes(x=prob.y, fill=y)) + geom_histogram(position="identity", binwidth=0.01,alpha=0.5)
+```

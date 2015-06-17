@@ -1,0 +1,34 @@
+{
+    "Name": "rmarkdown_render",
+    "Description": "Render .Rmd reports",
+    "Version": "0.1",
+    "CategoryTags": [
+        "Machine Learning",
+        "R"
+    ],
+    "Cmd": "Rscript main.R",
+    "Param": {
+        "csv_sep": {
+            "Default": ",",
+            "Type": "string"
+        },
+        "csv_header": {
+            "Default": "TRUE",
+            "Type": "string"
+        }
+    },
+    "Input": {
+        "ds": [
+            "raw.csv"
+        ],
+        "rmd_report": [
+            "raw.rmarkdown"
+        ]
+    },
+    "Output": {
+        "output_report": [
+            "raw.html",
+            "raw"
+        ]
+    }
+}
