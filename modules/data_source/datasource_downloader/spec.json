@@ -1,14 +1,21 @@
 {
-    "Name" : "datasource_downloader",
-    "Description" : "A Data Source Downloader.",
-    "Version" : "0.1",
-    "CategoryTags": ["ETL"],
-    "Cmd" : "/usr/bin/python main.py",
-    "Param" : { },
-    "Input" : {
-        "DS": [ "datasource" ]
+    "Name": "datasource_downloader",
+    "Description": "A Data Source Downloader.",
+    "Version": "0.2",
+    "CategoryTags": [
+        "ETL"
+    ],
+    "Cmd": "python main.py",
+    "Param": {},
+    "Input": {
+        "DS": [
+            "datasource",
+            "datasource.file"
+        ]
     },
-    "Output" : {
-        "O" : [ "any" ]
+    "Output": {
+        "O": [
+            "any"
+        ]
     }
 }
