@@ -5,21 +5,18 @@
     "CategoryTags": [ "ETL", "CDH4" ],
     "Cmd" : "python main.py",
     "Param" : {
-        "hdfs_root": {
-            "Default": "$hdfs_root",
-            "Type": "string"
-        },
-        "yarn_resourcemanager": {
-            "Default": "127.0.0.1:8032",
-            "Type": "string"
-        },
-        "yarn_resourcemanager_scheduler": {
-            "Default": "127.0.0.1:8030",
-            "Type": "string"
+        "cluster": {
+            "Default": "",
+            "Type": "cluster"
         }
     },
     "Input": {
-        "DS": [ "datasource" ]
+        "DS": [
+            "datasource",
+            "datasource.file",
+            "datasource.hdfs",
+            "datasource.s3"
+        ]
     },
     "Output": {
         "dest_hdfs": [
