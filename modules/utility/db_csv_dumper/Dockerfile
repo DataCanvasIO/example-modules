@@ -3,7 +3,7 @@
 # VERSION : 0.1
 
 FROM zetdata/sci-python:2.7
-# MAINTAINER Your_name, Your_email_address
+MAINTAINER Xiaolin Zhang, zhangxl@zetyun.com
 
 RUN apt-get update && apt-get install -y python-dev libpq-dev
 

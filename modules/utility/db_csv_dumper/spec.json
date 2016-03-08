@@ -1,8 +1,10 @@
 {
     "Name": "db_csv_dumper",
     "Description": "Dump DB type of datasource to a csv file.",
-    "Version": "0.1",
-    "CategoryTags": ["ETL"],
+    "Version": "0.3",
+    "CategoryTags": [
+        "ETL"
+    ],
     "Cmd": "python main.py",
     "Param": {
         "query": {
@@ -12,12 +14,13 @@
     },
     "Input": {
         "DB": [
-            "datasource"
+            "datasource",
+            "datasource.db"
         ]
     },
     "Output": {
         "O": [
-            "csv"
+            "raw.csv"
         ]
     }
 }
